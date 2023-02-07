@@ -1,0 +1,24 @@
+.container-noticia{
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.noticia-title {
+    border-radius: 20px 20px 0 0;
+    padding: 10px 0;
+    background-color: grey;
+}
+.noticia-body {
+    padding: 10px;
+    text-align: left;
+}
+.noticia-date {
+    color: rgb(185, 185, 185);
+}
+.noticia-buttons {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}

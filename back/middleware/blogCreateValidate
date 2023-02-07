@@ -1,0 +1,25 @@
+/* const {check} = require('express-validator'); */
+
+exports.blogCreateValidate = [
+    check('title')
+        .exists()
+        .not()
+        .isEmpty()
+        .withMessage('Ingrese un título')
+        .isLength({min:20})
+        .withMessage('Ingrese un título que tenga mas de 20 caracteres'),
+    check('body')
+        .exists()
+        .not()
+        .isEmpty()
+        .withMessage('Ingrese el texto de la nota')
+        .isLength({min:100}),
+    check('email')
+        .isEmail(),
+    check('createdAt')
+        .exists()
+        .not()
+        .isEmpty()
+        .withMessage('Ingrese la fecha de la publicación'),
+]
+
