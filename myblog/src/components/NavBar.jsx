@@ -26,6 +26,12 @@ const NavBar = () => {
               <a className="nav-link" href="/createblog">
                 Crear Noticia
               </a>
+              <a className="nav-link" href="/auth/login">
+                Login
+              </a>
+              <a className="nav-link" href="/auth/register">
+                Registro
+              </a>
             </div>
           </div>
         </div>
