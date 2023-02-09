@@ -1,13 +1,13 @@
 import {useState} from 'react';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
 
 
-  return (
+    return (
         <div className="container p-5">
-            <h2>Ingresar</h2>
+            <h2>Iniciar sesión</h2>
             <div className="row">
                 <div className="col-sm-4 offset-4 text-bg-success">
                     <div className="mt-5 mb-3">
@@ -20,13 +20,20 @@ const Login = () => {
                         <input type="password" className="form-control" value={pass} 
                             onChange={(e)=>{setPass(e.target.value)}} />
                     </div>
+                    <div>
+                        {/* <p className="text-danger bg-white">ERROR</p> */}
+                    </div>
                     <div className="mb-3">
-                      <button type="button" className="btn btn-outline-dark btn-block">Login</button>
+                        <button type="button" className="btn btn-outline-dark btn-block">Login</button>
+                    </div>
+                    <div>
+                        <p>¿No tenés una cuenta?</p>
+                        <p><a className="text-reset" href="/auth/register">REGISTRATE</a></p>
                     </div>
                 </div>
             </div>
         </div>
-  )
+    )
 }
 
 export default Login

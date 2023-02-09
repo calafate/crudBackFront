@@ -23,18 +23,32 @@ useEffect(() => {
 return (
     <div className="container">
         <h2>Lista de usuarios registrados</h2>
-        <div className="row">
-            {users.map((user) => {
+            <table className="table table-success table-striped table-bordered border-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Fecha Nac.</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Pass</th>
+                </tr>
+              </thead>
+              {users.map((user, i) => {
                 return (
-                    <div key={user._id} className="col">
-                        <ul>
-                            <li>{user.nombre}{user.apellido}</li>
-                            <li>{user.email}</li>
-                        </ul>
-                    </div>
+                  <tbody key={user._id}>
+                    <tr>
+                      <th scope="row">{i}</th>
+                      <td>{user.apellido}</td>
+                      <td>{user.nombre}</td>
+                      <td>{user.fecNacimiento}</td>
+                      <td>{user.email}</td>
+                      <td>{user.pass}</td>
+                    </tr>
+                  </tbody>
                 )})}
+            </table>
         </div>
-    </div>
     )
 }
 

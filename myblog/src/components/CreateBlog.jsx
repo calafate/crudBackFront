@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-
+import dayjs from 'dayjs'
 const baseURL ='http://localhost:8080'
 
 const CreateBlog = () => {
@@ -13,13 +13,12 @@ const CreateBlog = () => {
             title: title,
             body: body,
             image: "imagen",
-            createdAt: Date(bdate)
+            createdAt: dayjs(bdate).format("YYYY-MM-DD HH:MM")
         }
-        console.log(noticia)
 
         axios.post(`${baseURL}/api/blogs/`, noticia)
             .then(res => {
-                console.log(res.data.data)
+                console.log(res.data.data.createdAt)
                 setTitle("");
                 setBody("");
                 setBdate("");
@@ -47,7 +46,7 @@ const CreateBlog = () => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="date" className="form-label">Fecha de la Noticia</label>
-                        <input type="date" className="form-control" value={bdate} 
+                        <input type="date" className="form-control"  
                             onChange={(e)=>{setBdate(e.target.value)}} />
                     </div>
                     <button onClick={crearNoticia} className="btn btn-dark">Guardar</button>

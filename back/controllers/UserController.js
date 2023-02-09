@@ -1,6 +1,14 @@
 const User = require("../models/User");
 const bcrypt = require('bcryptjs')
 
+exports.listUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json({ data: users, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
 
 exports.createUser = async (req, res) => {
     let salt = bcrypt.genSaltSync(10)

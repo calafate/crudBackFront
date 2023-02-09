@@ -1,9 +1,12 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const baseURL ='http://localhost:8080'
 
 const Register = () => {
+  let navigate = useNavigate();
+
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [fecNacimiento, setFecNacimiento] = useState("");
@@ -21,7 +24,8 @@ const Register = () => {
 
     axios.post(`${baseURL}/user/`, usuario)
         .then(res => {
-            console.log(res.data.data)
+            console.log(res.data.data);
+            navigate("/auth/login");
         })
         .catch((err) => {
             console.log(err)
@@ -103,6 +107,10 @@ const Register = () => {
               onClick={crearUsuario}>
               Registrarse
             </button>
+          </div>
+          <div>
+            <p>¿Ya tenés una cuenta?</p>
+            <p><a className="text-reset" href="/auth/login">Inicia Sesión</a></p>
           </div>
         </div>
       </div>

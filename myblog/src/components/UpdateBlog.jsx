@@ -62,7 +62,7 @@ const UpdateBlog = () => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="date" className="form-label">Fecha de la Noticia</label>
-                        <input type="date" className="form-control" onChange={(e)=>{setBdate(e.target.value)}} />
+                        <input type="date" className="form-control"value={bdate} onChange={(e)=>{setBdate(e.target.value)}} />
                     </div>
                     <button onClick={(e) => {actualizarNoticia(e)}} className="btn btn-secondary">
                         Actualizar
