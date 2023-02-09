@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import axios from 'axios';
 
@@ -20,7 +19,7 @@ const Register = () => {
         pass: pass
     }
 
-    axios.post(`${baseURL}/`, usuario)
+    axios.post(`${baseURL}/user/`, usuario)
         .then(res => {
             console.log(res.data.data)
         })
@@ -33,7 +32,7 @@ const Register = () => {
     <div className="container p-5">
       <h2>Registro de Usuario</h2>
       <div className="row">
-        <div className="col-sm-6 offset-3 text-bg-warning ">
+        <div className="col-sm-4 offset-4 text-bg-warning ">
           <div className="mt-5 mb-3">
               <label htmlFor="nombre" className="form-label">
                 Nombre
@@ -99,7 +98,7 @@ const Register = () => {
               }}
             />
           </div>
-          <div className="mb-5">
+          <div className="mb-3">
             <button type="button" className="btn btn-outline-dark btn-block"
               onClick={crearUsuario}>
               Registrarse

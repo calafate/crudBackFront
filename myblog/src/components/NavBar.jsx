@@ -32,6 +32,9 @@ const NavBar = () => {
               <a className="nav-link" href="/auth/register">
                 Registro
               </a>
+              <a className="nav-link" href="/auth/lista">
+                Lista
+              </a>
             </div>
           </div>
         </div>

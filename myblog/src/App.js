@@ -6,6 +6,7 @@ import UpdateBlog from './components/UpdateBlog';
 import NavBar from './components/NavBar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import ListaUsuarios from './components/auth/ListaUsuarios';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/updateblog/:id" element= {<UpdateBlog/>} exact/> 
           <Route path="/auth/login" element= {<Login/>} exact/> 
           <Route path="/auth/register" element= {<Register/>} exact/>
+          <Route path="/auth/lista" element= {<ListaUsuarios/>} exact/>
         </Routes>
       </BrowserRouter>
     </div>
