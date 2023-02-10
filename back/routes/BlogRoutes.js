@@ -10,13 +10,15 @@ const {
 } = require("../controllers/BlogController");
 
 
-router.route("/").get(getAllBlogs)
+router.get("/", getAllBlogs);
 
-router.route("/").post([
+router.post("/", [
   check('title').not().isEmpty().withMessage('Ingrese un título'),
   check('body').not().isEmpty().withMessage('Ingrese el texto de la nota'),
 ], createBlog);
 
-router.route("/:id").get(getBlogById).put(updateBlog).delete(deleteBlog);
+router.get("/:id",getBlogById);
+router.put("/:id",updateBlog);
+router.delete("/:id",deleteBlog);
 
 module.exports = router;

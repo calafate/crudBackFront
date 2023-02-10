@@ -4,6 +4,7 @@ const cors = require("cors");
 const blogRouter = require("./routes/BlogRoutes");
 const userRouter = require("./routes/UserRoutes");
 const indexRouter = require ("./routes/index");
+const apiRouter = require ("./routes/ApiRoutes");
 
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/api/blogs", blogRouter);
 app.use("/user", userRouter);
+app.use("/pokemon", apiRouter);
 
 
 const {connect} = require("./db/db");

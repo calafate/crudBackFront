@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import ListaUsuarios from './components/auth/ListaUsuarios';
+import PokeList from './components/Pokemon/PokeList';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/auth/login" element= {<Login/>} exact/> 
           <Route path="/auth/register" element= {<Register/>} exact/>
           <Route path="/auth/lista" element= {<ListaUsuarios/>} exact/>
+          <Route path="/pokemon" element= {<PokeList/>} exact/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,24 +1,26 @@
 .container-noticia{
-    width: 300px;
+    width: 250px;
     margin: 0 auto;
-    border: 1px solid black;
+    
     border-radius: 20px;
     margin-bottom: 20px;
 }
 .noticia-title {
-    border-radius: 20px 20px 0 0;
     padding: 10px 0;
-    background-color: grey;
+    color: cadetblue;
+    font-weight: 500;
 }
 .noticia-body {
+    border-top: 1px solid rgb(185, 185, 185);
     padding: 10px;
     text-align: left;
 }
 .noticia-date {
     color: rgb(185, 185, 185);
+    font-size: 15px;
 }
 .noticia-buttons {
-    padding: 10px;
+    padding: 5px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
 }

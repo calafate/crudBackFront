@@ -35,6 +35,9 @@ const NavBar = () => {
               <a className="nav-link" href="/auth/lista">
                 Lista
               </a>
+              <a className="nav-link" href="/pokemon">
+                PokeAPI
+              </a>
             </div>
           </div>
         </div>

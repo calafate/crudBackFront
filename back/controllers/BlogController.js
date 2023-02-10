@@ -24,7 +24,7 @@ exports.createBlog = async (req, res) => {
     const err = validationResult(req);
     if (err.isEmpty()) {
       const blog = new Blog(req.body);
-      await Blog.create(blog);
+      await blog.save();
       res.json({ data: blog, status: "success" });
     } else {
       res.status(501).json({ error: err });
