@@ -29,7 +29,7 @@ const AllBlogs = () => {
 
   return (
     <div className="container">
-      <h2>Todas las Noticias</h2>
+      <h2 className="m-3">Publicaciones</h2>
         {!noticias.length ? <EmptyList /> : <ListBlogs noticias={noticias} baseURL={baseURL} />}
     </div>
   );

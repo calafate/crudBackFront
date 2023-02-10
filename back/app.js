@@ -16,7 +16,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/api/blogs", blogRouter);
 app.use("/user", userRouter);
-app.use("/pokemon", apiRouter);
+/* app.use("/pokemon", apiRouter); */
 
 
 const {connect} = require("./db/db");

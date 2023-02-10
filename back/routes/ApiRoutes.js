@@ -1,9 +1,9 @@
-const express = require("express");
+/* const express = require("express");
 const router = express.Router();
-const {listPokemon} = require("../controllers/ApiController");
+const {pokemonList} = require("../controllers/ApiController");
 
-router.get("/", listPokemon);
+router.get("/", pokemonList);
 router.get("/:id", PokemonXid);
 
 
-module.exports = router;
+module.exports = router; */
