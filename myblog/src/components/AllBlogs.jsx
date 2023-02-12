@@ -29,7 +29,14 @@ const AllBlogs = () => {
 
   return (
     <div className="container">
-      <h2 className="m-3">Publicaciones</h2>
+      <h2 className="text-secondary m-3">Publicaciones</h2>
+      <div className="d-flex justify-content-end">
+        <a href="/createblog">
+          <button className="btn btn-outline-success ">Nueva Publicación</button>
+        </a>
+      </div>
+      
+      <hr />
         {!noticias.length ? <EmptyList /> : <ListBlogs noticias={noticias} baseURL={baseURL} />}
     </div>
   );

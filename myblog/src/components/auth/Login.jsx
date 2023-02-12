@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import "../portada/portada.css";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -6,10 +7,10 @@ const Login = () => {
 
 
     return (
-        <div className="container p-5">
+        <div className="container-fluid p-5 portada">
             <h2>Iniciar sesión</h2>
             <div className="row">
-                <div className="col-sm-4 offset-4 text-bg-success">
+                <div className="col-sm-4 offset-4">
                     <div className="mt-5 mb-3">
                         <label htmlFor="email" className="form-label">Ingrese email</label>
                         <input type="text" className="form-control" value={email}
@@ -24,7 +25,7 @@ const Login = () => {
                         {/* <p className="text-danger bg-white">ERROR</p> */}
                     </div>
                     <div className="mb-3">
-                        <button type="button" className="btn btn-outline-dark btn-block">Login</button>
+                        <button type="button" className="btn btn-dark btn-block">Login</button>
                     </div>
                     <div>
                         <p>¿No tenés una cuenta?</p>

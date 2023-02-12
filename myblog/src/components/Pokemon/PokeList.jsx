@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Pokemon from "./Pokemon";
-import "./pokemon.css";
+import Pokemones from "./Pokemones";
+import "./pokemones.css";
 
 const PokeList = () => {
-  const limit = 12;
+  
+  const limit = 16;
   const URL = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`;
+
   const [pokemones, setPokemones] = useState([]);
   const [actual, setActual] = useState(URL);
   const [anterior, setAnterior] = useState(null);
@@ -32,8 +34,7 @@ const PokeList = () => {
   return (
     <div className="container mb-5">
       <h2 className="pokemonesTitulo">Pokemones</h2>
-      <div className="d-flex justify-content-end align-items-center pb-2">
-        <div>Cantidad Total de Pokemones: {total}</div>
+      <div className="d-flex justify-content-end align-items-center pb-3">
         <button
           onClick={() => anterior !== null && setActual(anterior)}
           className="btn btn-secondary mx-3">ANT
@@ -49,12 +50,13 @@ const PokeList = () => {
             <div key={i}>
               <div className="pokemonCard">
                 <h4>{pokemon.name}</h4>
-                <Pokemon url={pokemon.url} />
+                <Pokemones url={pokemon.url} />
               </div>
             </div>
           );
         })}
       </div>
+      <div className="pokemonesCant">Cantidad total de Pokemones: {total}</div>
     </div>
   );
 };

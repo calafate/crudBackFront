@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../portada/portada.css'
 
 const baseURL ='http://localhost:8080'
 
@@ -33,10 +34,10 @@ const Register = () => {
 }
 
   return (
-    <div className="container p-5">
+    <div className="container-fluid p-5 portada">
       <h2>Registro de Usuario</h2>
       <div className="row">
-        <div className="col-sm-4 offset-4 text-bg-warning ">
+        <div className="col-sm-4 offset-4">
           <div className="mt-5 mb-3">
               <label htmlFor="nombre" className="form-label">
                 Nombre
@@ -103,7 +104,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-3">
-            <button type="button" className="btn btn-outline-dark btn-block"
+            <button type="button" className="btn btn-dark btn-block"
               onClick={crearUsuario}>
               Registrarse
             </button>

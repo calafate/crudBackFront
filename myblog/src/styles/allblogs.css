@@ -1,7 +1,6 @@
 .container-noticia{
-    width: 250px;
+    width: 500px;
     margin: 0 auto;
-    
     border-radius: 20px;
     margin-bottom: 20px;
 }
@@ -9,15 +8,31 @@
     padding: 10px 0;
     color: cadetblue;
     font-weight: 500;
+    text-align: left;
+}
+.noticia-resumen{
+    color: rgb(185, 185, 185);
+    text-align: left;
 }
 .noticia-body {
     border-top: 1px solid rgb(185, 185, 185);
     padding: 10px;
-    text-align: left;
+    color: rgb(185, 185, 185);
+    text-align: justify;
+    height: 150px;
+    overflow: hidden;
+}
+.noticia-date-category {
+    display: flex;
+    justify-content: space-between;
 }
 .noticia-date {
     color: rgb(185, 185, 185);
-    font-size: 15px;
+    font-size: 12px;
+}
+.noticia-category {
+    color: cadetblue;
+    font-size: 12px;
 }
 .noticia-buttons {
     padding: 5px;
