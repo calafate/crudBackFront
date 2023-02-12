@@ -120,43 +120,6 @@ const UpdateBlog = () => {
                     </div>
             </div>
         </div>
-        /* <div className="container text-bg-dark p-5">
-            <h2>Actualizar Noticia</h2>
-            <div className="row mt-5">
-                <div className="col-sm-6 offset-3">
-                    <form>
-                        <div className="mb-3">
-                            <label htmlFor="title" className="form-label">Titulo de la Noticia</label>
-                            <input type="text" className="form-control" value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="body" className="form-label">Texto de la Noticia</label>
-                            <div dangerouslySetInnerHTML={{__html:body}} className="noticia-body"/>
-                            <textarea className="form-control" rows="5" value={body} onChange={(e)=>{setBody(e.target.value)}} />
-                        </div>
-                        <div className="mb-3">
-                            <select className="form-select" 
-                                onChange={(e)=>{setCategory(e.target.value)}}>
-                                <option selected>{category}</option>
-                                <option value="Vida Sana">Vida Sana</option>
-                                <option value="Educación">Educación</option>
-                                <option value="Política">Política</option>
-                                <option value="Sociedad">Sociedad</option>
-                                <option value="Tecnología">Tecnología</option>
-                            </select>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="date" className="form-label">Fecha de la Noticia</label>
-                            <input type="date" className="form-control" value={bdate} onChange={(e)=>{setBdate(e.target.value)}} />
-                        </div>
-                        <button onClick={(e) => {actualizarNoticia(e)}} className="btn btn-outline-light">
-                            Actualizar
-                        </button>
-                        <Link to="/allblogs"><button className="btn btn-outline-danger mx-2">Cancelar</button></Link>
-                    </form>
-                </div>
-            </div>
-        </div> */
     )
 }
 

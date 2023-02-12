@@ -10,6 +10,7 @@ import ListaUsuarios from './components/auth/ListaUsuarios';
 import PokeList from './components/pokemon/PokeList';
 import Pokemon from './components/pokemon/Pokemon';
 import Portada from './components/portada/Portada';
+import Blog from './components/Blog';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element= {<Portada />} exact />
           <Route path="/allblogs" element= {<AllBlogs/>} exact />
+          <Route path="/allblogs/:id" element= {<Blog/>} exact />
           <Route path="/createblog" element= {<CreateBlog/>} exact />
           <Route path="/updateblog/:id" element= {<UpdateBlog/>} exact/>
           <Route path="/auth/login" element= {<Login/>} exact/> 

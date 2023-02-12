@@ -1,0 +1,28 @@
+.publicacion-title {
+    color: cadetblue;
+}
+.publicacion-body{
+    color: rgb(185, 185, 185);
+    text-align: justify;
+}
+.publicacion-hr{
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgb(185, 185, 185);
+}
+.publicacion-date-category{
+    display: flex;
+    justify-content: space-between;
+}
+.publicacion-date{
+    color: rgb(185, 185, 185);
+    font-size: 15px;
+}
+.publicacion-category{
+    color: cadetblue;
+    font-size: 15px;
+}
+.publicacion-volver{
+    display: flex;
+    justify-content: end;
+}

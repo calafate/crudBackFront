@@ -7,6 +7,7 @@ import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import "../styles/allblogs.css";
 
 const ListBlogs = ({ noticias, baseURL }) => {
+
   const borrarNoticia = async (e, id) => {
     e.preventDefault();
     await axios
@@ -45,19 +46,28 @@ const ListBlogs = ({ noticias, baseURL }) => {
                   </p>
                   {/* <p>{noticia.createdAt}</p> */}
                 </div>
+                
                 <div className="noticia-buttons">
-                  <Link
-                    to={`/updateblog/${noticia._id}`}
-                    type="button"
-                    className="btn">
-                    <FontAwesomeIcon icon = {faPenToSquare} color="lightBlue"/>
-                  </Link>
-                  <button
-                    className="btn"
-                    onClick={(e) => {
-                      borrarNoticia(e, noticia._id);}}>
-                    <FontAwesomeIcon icon = {faTrashCan} color="red" />
-                  </button>
+                  <div className="link-blog">
+                    <Link className="btn btn-outline-light btn-sm link-blog" to={`/allblogs/${noticia._id}`}>
+                      Seguir Leyendo
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
+                      to={`/updateblog/${noticia._id}`}
+                      type="button"
+                      className="btn">
+                      <FontAwesomeIcon icon = {faPenToSquare} color="lightBlue"/>
+                    </Link>
+                    <button
+                      className="btn"
+                      onClick={(e) => {
+                        borrarNoticia(e, noticia._id);}}>
+                      <FontAwesomeIcon icon = {faTrashCan} color="red" />
+                    </button>
+                  </div>
+                  
                 </div>
               </div>
             </div>
