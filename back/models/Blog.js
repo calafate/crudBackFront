@@ -6,9 +6,15 @@ const blogSchema = new Schema({
         type: String,
         required: true
     },
+    summary: {
+        type: String,
+    },
     body: {
         type: String,
         required: true
+    },
+    category: {
+        type: String,
     },
     image: {
         type: String,
