@@ -9,7 +9,7 @@ const [users, setUsers] = useState([]);
 useEffect(() => {
     const showUsers = async () => {
         await axios
-            .get(`${baseURL}/user/`)
+            .get(`${baseURL}/user/list`)
             .then((res) => {
             setUsers(res.data.data);
             })

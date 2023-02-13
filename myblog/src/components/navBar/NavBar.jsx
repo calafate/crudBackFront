@@ -3,10 +3,10 @@ import {NavLink} from 'react-router-dom';
 const NavBar = () => {
   return (
     <>
-      <nav className="navbar sticky-top navbar-expand-lg navbar-dark">
+      <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
-          <NavLink className="navbar-brand" to="/">
-            Mi Blog
+          <NavLink className="navbar-brand" to="/allblogs">
+            MAG Blog
           </NavLink>
           <button
             className="navbar-toggler"
@@ -24,7 +24,7 @@ const NavBar = () => {
               <NavLink activeclassname="active" className="nav-link" aria-current="page" to="/allblogs">
                 Publicaciones
               </NavLink>
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <NavLink activeclassname="active" className="nav-link dropdown-toggle" to="/login" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Auth
                 </NavLink>
@@ -36,10 +36,14 @@ const NavBar = () => {
                   </li>
                   <li><NavLink activeclassname="active" className="dropdown-item" to="/auth/lista">List</NavLink></li>
                 </ul>
-              </li>
+              </li> 
               <NavLink activeclassname="active" className="nav-link" to="/pokemon">
                 PokeAPI
+              </NavLink>*/}
+              <NavLink activeclassname="active" className="nav-link" to="/">
+                Logout
               </NavLink>
+              
             </div>
           </div>
         </div>

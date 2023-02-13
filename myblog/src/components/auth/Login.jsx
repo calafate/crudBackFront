@@ -1,57 +1,59 @@
 import { useState } from "react";
 import "../portada/portada.css";
-import { Link } from "react-router-dom";
+import "./auth.css";
+import { useNavigate, Link } from "react-router-dom";
+import axios from 'axios';
+
+const baseURL ='http://localhost:8080';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  let navigate = useNavigate();
+
+  const login = (e) => {
+    e.preventDefault();
+    const login = {
+      email: email,
+      pass: pass
+    };
+    axios.post(`${baseURL}/user/login`, login)
+    .then(res => {
+        console.log(res.data.data);
+        navigate("/allblogs");
+    })
+    .catch((err) => {
+        alert("Login Incorrecto")
+        console.log(err)
+    })
+
+  };
 
   return (
-    <div className="container-fluid p-5 portada">
-      <h2>Iniciar sesión</h2>
-      <div className="row">
-        <div className="col-sm-4 offset-4">
-          <div className="mt-5 mb-3">
-            <label htmlFor="email" className="form-label">
-              Ingrese email
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="pass" className="form-label">
-              Ingrese contraseña
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              value={pass}
-              onChange={(e) => {
-                setPass(e.target.value);
-              }}
-            />
-          </div>
-          <div>{/* <p className="text-danger bg-white">ERROR</p> */}</div>
-          <div className="mb-3">
-            <button type="button" className="btn btn-dark btn-block">
-              Login
-            </button>
-          </div>
-          <div>
-            <p>¿No tenés una cuenta?</p>
-            <p>
-              <Link className="text-reset" to="/auth/register">
-                REGISTRATE
-              </Link>
-            </p>
-          </div>
-        </div>
+    <div className="container-fluid portada">
+      <form className="login" onSubmit={login}>
+        <h2 className="login-title">Iniciar sesión</h2>
+        <input 
+          type="text"
+          className="login-mail"
+          placeholder="Ingrese email"
+          value={email}
+          onChange={(e) => {setEmail(e.target.value)}}
+        />
+        <input
+          type="password"
+          className="login-pass"
+          placeholder="Ingrese password"
+          value={pass}
+          onChange={(e) => {setPass(e.target.value)}}
+        />
+        <button className="login-button">Iniciar sesión</button>
+      </form>
+      <div>
+        <p>¿No tenés una cuenta?</p>
+        <p><Link className="text-reset-auth" to="/auth/register">
+            Registrate</Link>
+        </p>
       </div>
     </div>
   );

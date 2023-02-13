@@ -1,0 +1,15 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.grid-container p{
+    color: var(--text-color);
+    font-size: 15px;
+    padding: 30px;
+}
+.hr-footer{
+    border: 0;
+    height: 0; /* Firefox... */
+    box-shadow: 0 0 10px 2px var(--main-color);
+}
+

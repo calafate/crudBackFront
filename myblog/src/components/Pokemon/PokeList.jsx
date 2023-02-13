@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Pokemones from "./Pokemones";
 import "./pokemones.css";
+import { Link } from "react-router-dom";
+
 
 const PokeList = () => {
   
@@ -32,7 +34,10 @@ const PokeList = () => {
   }, [actual]);
 
   return (
-    <div className="container mb-5">
+    <div className = "container mb-5">
+      <nav className = "link-inicio">
+        <Link to="/">Inicio</Link>
+      </nav>
       <h2 className="pokemones-title">Pokemones</h2>
       <div className="d-flex justify-content-end align-items-center pb-3">
         <button
