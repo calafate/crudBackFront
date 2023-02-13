@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../portada/portada.css'
 
 const baseURL ='http://localhost:8080'
@@ -111,7 +111,7 @@ const Register = () => {
           </div>
           <div>
             <p>¿Ya tenés una cuenta?</p>
-            <p><a className="text-reset" href="/auth/login">Inicia Sesión</a></p>
+            <p><Link className="text-reset" to="/auth/login">Inicia Sesión</Link></p>
           </div>
         </div>
       </div>

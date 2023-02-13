@@ -1,5 +1,4 @@
 .portada {
-    /* linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),  */
     background-image: url("../../img/portada.jpg");
     width: 100%;
     min-height: 100vh;
@@ -8,7 +7,7 @@
     background-position: center;
     background-attachment: fixed;
     text-align: center;
-    color: rgb(173, 179, 184);
+    color: var(--text-color);
 }
 .container-text {
     padding-top: 10rem;

@@ -1,0 +1,13 @@
+.btnGoTo {
+    font-size: 25px;
+    background-color: var(--main-color);
+    color: white;
+    position: fixed;
+    bottom: 50px;
+    right: 70px;
+    outline: none;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    padding: 0 5px;
+    cursor: pointer;
+}

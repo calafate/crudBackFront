@@ -1,0 +1,81 @@
+.main-body{
+    color: var(--title-color);
+}
+
+.container-side {
+    display: flex;
+}
+.side-body{
+    width: 77%;
+    padding-right: 3%;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    width: 19%;
+    padding: 1%;
+    border: 1px solid var(--text-color);
+}
+.file{
+    display: flex;
+}
+.quill{
+    background-color: white;
+}
+
+.side-buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.save-button{
+    background-color: transparent;
+    color: var(--secondary-color);
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+    margin-bottom: 10px;
+}
+.save-button:hover{
+    background-color: var(--secondary-color);
+    color:black;
+    border: 1px solid var(--secondary-color);
+}
+
+.cancel-button{
+    background-color: transparent;
+    color: var(--danger-color);
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--danger-color);
+    margin-bottom: 10px;
+}
+.cancel-button:hover{
+    background-color: var(--danger-color);
+    color:black;
+    border: 1px solid var(--danger-color);
+}
+
+@media (max-width: 1028px){
+    .container-side {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .side-body{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    .side-bar{
+        display: flex;
+        margin: 0 auto;
+        width: 90%;
+        border: 1px solid var(--text-color);
+    }
+
+}

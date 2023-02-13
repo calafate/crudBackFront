@@ -1,8 +1,8 @@
 import './App.css';
 import { Route, Routes} from 'react-router-dom';
-import AllBlogs from './components/AllBlogs';
-import CreateBlog from './components/CreateBlog';
-import UpdateBlog from './components/UpdateBlog';
+import AllBlogs from './components/blog/AllBlogs';
+import CreateBlog from './components/blog/CreateBlog';
+import UpdateBlog from './components/blog/UpdateBlog';
 import NavBar from './components/navBar/NavBar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -10,7 +10,8 @@ import ListaUsuarios from './components/auth/ListaUsuarios';
 import PokeList from './components/pokemon/PokeList';
 import Pokemon from './components/pokemon/Pokemon';
 import Portada from './components/portada/Portada';
-import Blog from './components/Blog';
+import Blog from './components/blog/Blog';
+import ScrollButton from './components/common/ScrollButton';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <ScrollButton />
         <Routes>
           <Route path="/" element= {<Portada />} exact />
           <Route path="/allblogs" element= {<AllBlogs/>} exact />

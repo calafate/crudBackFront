@@ -25,7 +25,7 @@ const Pokemones = (url) => {
   return (
       <img
         /* onClick={1} */ 
-        className = "pokemonImg"
+        className = "pokemon-img"
         src={pokemonImg}
         alt="imagen Pokemon"
         />

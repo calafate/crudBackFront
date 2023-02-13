@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+:root {
+  --main-color: rgb(95, 158, 160);  /* rgba(95,158,160) */
+  --secondary-color: rgb(182, 130, 203); /* rgb(182, 130, 203)*/
+  --title-color: rgb(120, 120, 120);  /*rgb(120, 120, 120)*/
+  --text-color: rgb(185, 185, 185);  /*rgba(185, 185, 185)*/
+  --danger-color: rgb(255, 89, 89);  /*rgb(255, 89, 89)*/
+  --update-color: rgb(143, 213, 236);  /*rgb(143, 213, 236)*/
+}
+
 * {
   margin: 0;
   padding: 0;

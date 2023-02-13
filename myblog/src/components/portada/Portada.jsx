@@ -1,5 +1,3 @@
-import React from "react";
-import NavBar from "../navBar/NavBar";
 import { Link } from "react-router-dom";
 import "./portada.css";
 
@@ -15,9 +13,9 @@ const Portada = () => {
             <hr />
           </div>
           <div className="col-lg-8 align-self-baseline">
-            <p className="text-white-75 mb-5">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, tenetur ullam quos saepe alias natus porro aperiam!
-            </p>
+            <h4 className="text-white-75 mb-5">
+            Sitio web donde uno puede publicar cualquier cosa que desee compartir con otras personas.
+            </h4>
             <Link to="/auth/login" className="btn btn-dark btn-xl">
               Ingresar
             </Link>

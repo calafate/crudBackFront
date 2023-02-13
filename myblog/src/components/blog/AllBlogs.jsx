@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import "../styles/allblogs.css";
-import EmptyList from "./EmptyList";
+import { useState, useEffect } from "react";
+import "./allblogs.css";
+import EmptyList from "../common/EmptyList";
 import ListBlogs from "./ListBlogs";
 
 
@@ -29,13 +29,12 @@ const AllBlogs = () => {
 
   return (
     <div className="container">
-      <h2 className="text-secondary m-3">Publicaciones</h2>
+      <h2 className="main-title m-3">Publicaciones</h2>
       <div className="d-flex justify-content-end">
         <a href="/createblog">
-          <button className="btn btn-outline-success ">Nueva Publicación</button>
+          <button className="main-button">Nueva Publicación</button>
         </a>
       </div>
-      
       <hr />
         {!noticias.length ? <EmptyList /> : <ListBlogs noticias={noticias} baseURL={baseURL} />}
     </div>

@@ -3,7 +3,7 @@ const { validationResult } = require("express-validator");
 
 exports.getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find();
+    const blogs = await Blog.find().sort({createdAt: -1});
     res.json({ data: blogs, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });

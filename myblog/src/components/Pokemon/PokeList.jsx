@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Pokemones from "./Pokemones";
 import "./pokemones.css";
@@ -33,7 +33,7 @@ const PokeList = () => {
 
   return (
     <div className="container mb-5">
-      <h2 className="pokemonesTitulo">Pokemones</h2>
+      <h2 className="pokemones-title">Pokemones</h2>
       <div className="d-flex justify-content-end align-items-center pb-3">
         <button
           onClick={() => anterior !== null && setActual(anterior)}
@@ -44,11 +44,11 @@ const PokeList = () => {
           className="btn btn-secondary">SIG
         </button>
       </div>
-      <div className="pokemonContainer">
+      <div className="pokemon-container">
         {pokemones.map((pokemon, i) => {
           return (
             <div key={i}>
-              <div className="pokemonCard">
+              <div className="pokemon-card">
                 <h4>{pokemon.name}</h4>
                 <Pokemones url={pokemon.url} />
               </div>
@@ -56,7 +56,7 @@ const PokeList = () => {
           );
         })}
       </div>
-      <div className="pokemonesCant">Cantidad total de Pokemones: {total}</div>
+      <div className="pokemones-cant">Cantidad total de Pokemones: {total}</div>
     </div>
   );
 };

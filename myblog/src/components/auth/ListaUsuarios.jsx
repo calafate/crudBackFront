@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import axios from 'axios';
 
 const baseURL =  'http://localhost:8080'
@@ -23,7 +23,7 @@ useEffect(() => {
 return (
     <div className="container">
         <h2>Lista de usuarios registrados</h2>
-            <table className="table table-success table-striped table-bordered border-dark">
+            <table className="table table-light table-striped table-bordered border-dark">
               <thead>
                 <tr>
                   <th scope="col">#</th>

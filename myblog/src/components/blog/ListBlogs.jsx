@@ -1,10 +1,9 @@
-import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import "../styles/allblogs.css";
+import "./allblogs.css";
 
 const ListBlogs = ({ noticias, baseURL }) => {
 
@@ -27,30 +26,28 @@ const ListBlogs = ({ noticias, baseURL }) => {
         {noticias.map((noticia) => {
           return (
             <div key={noticia._id} className="col-sm-6">
-              <div className="container-noticia mb-5">
-                <div className="noticia-title">
+              <div className="blog-container mb-5">
+                <div className="item-title">
                   <h5>{noticia.title}</h5>
                 </div>
-                <div className="noticia-resumen">
+                <div className="item-summary">
                   <p>{noticia.summary}</p>
                 </div>
-                {/* <div dangerouslySetInnerHTML={{__html:noticia.body}} className="noticia-body"/> */}
                 <hr />
-                <div className="noticia-date-category">
-                  <p className="noticia-date">
+                <div className="item-date-category">
+                  <p className="item-date">
                     Publicado el: {" "}
                     {dayjs(noticia.createdAt).format("DD MMMM YYYY")}
                   </p>
-                  <p className="noticia-category">
+                  <p className="item-category">
                     {noticia.category}
                   </p>
-                  {/* <p>{noticia.createdAt}</p> */}
                 </div>
                 
                 <div className="noticia-buttons">
-                  <div className="link-blog">
-                    <Link className="btn btn-outline-light btn-sm link-blog" to={`/allblogs/${noticia._id}`}>
-                      Seguir Leyendo
+                  <div className="item-link">
+                    <Link className="link-blog" to={`/allblogs/${noticia._id}`}>
+                      Seguir Leyendo ...
                     </Link>
                   </div>
                   <div>
@@ -58,13 +55,13 @@ const ListBlogs = ({ noticias, baseURL }) => {
                       to={`/updateblog/${noticia._id}`}
                       type="button"
                       className="btn">
-                      <FontAwesomeIcon icon = {faPenToSquare} color="lightBlue"/>
+                      <FontAwesomeIcon icon = {faPenToSquare} color="var(--update-color)"/>
                     </Link>
                     <button
                       className="btn"
                       onClick={(e) => {
                         borrarNoticia(e, noticia._id);}}>
-                      <FontAwesomeIcon icon = {faTrashCan} color="red" />
+                      <FontAwesomeIcon icon = {faTrashCan} color="var(--danger-color)" />
                     </button>
                   </div>
                   
@@ -75,6 +72,7 @@ const ListBlogs = ({ noticias, baseURL }) => {
         })}
       </div>
     </div>
+    
   );
 };
 
