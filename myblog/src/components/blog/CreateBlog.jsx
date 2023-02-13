@@ -41,21 +41,20 @@ const CreateBlog = () => {
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("Categoría");
-  const [image, setImage] = useState("");
   const [bdate, setBdate] = useState(dayjs(new Date()).format("YYYY-MM-DD"));
-  const [files, setFiles] = useState("")
+  /* const [files, setFiles] = useState("") */
   
   const crearPublicacion = () => {
-    const time = new Date().toLocaleTimeString('en-US');
+    /*const time = new Date().toLocaleTimeString('en-US');
     const formatDateTime = `${bdate}T${time}`;
-    const dateTime = Date(formatDateTime)
+     const dateTime = Date(formatDateTime) */
 
     const publicacion = {
       title: title,
       summary: summary,
       body: body,
       category: category,
-      image: files,
+      //image: files,
       createdAt: bdate,
     };
     axios
@@ -66,7 +65,7 @@ const CreateBlog = () => {
         setSummary("");
         setBody("");
         setCategory("");
-        setImage("");
+        //setFiles("");
         setBdate(dayjs(new Date()).format("YYYY-MM-DD"));
       })
       .catch((err) => {
@@ -95,7 +94,7 @@ const CreateBlog = () => {
             placeholder="Resumen de la Publicación"
             onChange={(e) => {
               setSummary(e.target.value);}}/>
-          <div className="file">
+          {/* <div className="file">
             <label htmlFor="image">Seleccione una imagen (*.jpg o *.png)</label>
             <input
               type="file"
@@ -104,7 +103,7 @@ const CreateBlog = () => {
               accept="image/png, image/jpg"
               onChange={(e) => {
                 setFiles(e.target.files);}}/>
-          </div>
+          </div> */}
           <div className="quill">
             <ReactQuill
               theme="snow"

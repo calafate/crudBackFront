@@ -43,7 +43,7 @@ const UpdateBlog = () => {
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+  /* const [files, setFiles] = useState(""); */
   const [bdate, setBdate] = useState("");
   let navigate = useNavigate();
 
@@ -56,7 +56,7 @@ const UpdateBlog = () => {
           setSummary(res.data.data.summary);
           setBody(res.data.data.body);
           setCategory(res.data.data.category);
-          setImage(res.data.data.image);
+          // setFiles(res.data.data.image);
           setBdate(res.data.data.createdAt);
         })
         .catch((err) => {

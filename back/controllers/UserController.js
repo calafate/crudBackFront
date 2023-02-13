@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const Login = require("../models/Login");
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
+const secret = "EstaEsUnaPalabraSecreta"
 
 exports.listUsers = async (req, res) => {
   try {
@@ -46,24 +48,39 @@ exports.loginUser = async (req, res) => {
   };
   try {
     const user = await User.findOne({email: usuarioLogin.email});
-    /* res.json({ data: user }); */
-    const passOK = bcrypt.compareSync(usuarioLogin.pass, user.pass);
-    console.log(passOK)
-    if (passOK) {
-      console.log("Login exitoso")
-      /* res.json({ data: user, status: "Login exitoso" }); */
-      const login = new Login(usuarioLogin);
-      await login.save();
-      res.json({ data: login, status: "Login exitoso" });
+    if (user !== null) {
+      const passOK = bcrypt.compareSync(usuarioLogin.pass, user.pass);
+      if (passOK) {
+        jwt.sign({user,id:user._id}, secret, {}, (err, token) =>{
+          if(err) throw err;
+          res.cookie('token', token).json("OK");
+        })
+          
+        const login = new Login(usuarioLogin);
+        await login.save();
+        res.json({ data: login, status: "Login exitoso" });
+      } else {
+        console.log("Contraseña incorrecta")
+        res.status(400).json("Contraseña incorrecta");
+        res.status(501).json({ error: err.message }); 
+      }
     } else {
-      console.log("Datos incorrectos")
-      console.log("usuarioLogin.pass", usuarioLogin.pass)
-      console.log("user.data.pass", user.data.pass)
-      console.log(passOK)
-      res.status(501).json({ error: err.message }); 
+      console.log("Usuario inexistente, debe Registrarse")
+      res.status(501).json({ error: err.message });
     }
-
   } catch (err) {
+    console.log("Usuario logeado")
     res.status(501).json({ error: err.message });
+  }
+};
+exports.deleteLogin = async (req, res) => {
+  const usuarioLogin = {
+    email: req.body.email,
+  };
+  try {
+    const login = await Login.findOneAndDelete({email: req.body.email});
+    res.json({ data: login, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };

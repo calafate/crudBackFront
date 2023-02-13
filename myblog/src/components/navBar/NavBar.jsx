@@ -1,6 +1,9 @@
 import {NavLink} from 'react-router-dom';
 
+
+
 const NavBar = () => {
+  
   return (
     <>
       <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">

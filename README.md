@@ -20,6 +20,11 @@
 - [cookie-parser] - 
 - [body-parser] - 
 - [nodemon] - 
+- [jason-web-token] - 
+- [react-quill] - 
+- [cookie-parser] - 
+
+
 
 
 ## Datos para usar de ejemplo:
