@@ -6,7 +6,6 @@ const userRouter = require("./routes/UserRoutes");
 const indexRouter = require ("./routes/index");
 const apiRouter = require ("./routes/ApiRoutes");
 
-
 const app = express();
 
 app.use(logger("dev"));
