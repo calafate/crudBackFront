@@ -30,12 +30,7 @@
 .button-return{
     background-color: transparent;
     color: var(--secondary-color);
-    padding: 5px 15px;
-    border-radius: 10px;
-    border: 1px solid var(--secondary-color);
 }
 .button-return:hover{
-    background-color: var(--secondary-color);
-    color:black;
-    border: 1px solid var(--secondary-color);
+    text-decoration: underline;
 }

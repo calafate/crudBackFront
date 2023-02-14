@@ -14,7 +14,8 @@ const PokeList = () => {
   const [actual, setActual] = useState(URL);
   const [anterior, setAnterior] = useState(null);
   const [siguiente, setSiguiente] = useState(null);
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState(0);
+
 
   useEffect(() => {
     const mostrarPokemon = async () => {
@@ -32,6 +33,7 @@ const PokeList = () => {
     };
     mostrarPokemon();
   }, [actual]);
+
 
   return (
     <div className = "container mb-5">

@@ -3,7 +3,7 @@
     grid-template-columns: 1fr;
 }
 .grid-container p{
-    color: var(--text-color);
+    color: var(--title-color);
     font-size: 15px;
     padding: 30px;
 }

@@ -1,0 +1,18 @@
+.container-category-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.item-category-search{
+    color: var(--secondary-color);
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 0 10px;
+}
+.item-category-search:hover{
+    color: white;
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}

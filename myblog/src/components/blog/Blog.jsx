@@ -28,25 +28,27 @@ const Blog = () => {
 
   return (
     <div className="col-sm-6 offset-3">
+      <div className="publication-return">
+        <Link to="/allblogs">
+          <button className="button-return">Volver</button>
+        </Link>
+      </div>
       <div className="publication-title">
         <h2 className="mt-3">{blog.title}</h2>
       </div>
-        <hr className="publication-hr" />
-        <div
-          dangerouslySetInnerHTML={{ __html: blog.body }}
-          className="publication-body mb-3"
-        />
-        <hr className="publication-hr"/>
-        <div className="publication-date-category">
-          <p className="publication-date">
-            Publicado el: {dayjs(blog.createdAt).format("DD MMMM YYYY")}
-          </p>
-          <p className="publication-category">{blog.category}</p>
-        </div>
-        <div className="publication-return">
-          <Link to="/allblogs"><button className="button-return">Volver</button></Link>
-        </div>
+      <hr className="publication-hr" />
+      <div
+        dangerouslySetInnerHTML={{ __html: blog.body }}
+        className="publication-body mb-3"
+      />
+      <hr className="publication-hr" />
+      <div className="publication-date-category">
+        <p className="publication-date">
+          Publicado el: {dayjs(blog.createdAt).format("DD MMMM YYYY")}
+        </p>
+        <p className="publication-category">{blog.category}</p>
       </div>
+    </div>
   );
 };
 

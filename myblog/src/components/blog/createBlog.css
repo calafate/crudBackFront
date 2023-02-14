@@ -12,6 +12,9 @@
     align-items: center;
     text-align: left;
 }
+.side-body label{
+    color: var(--text-color);
+}
 .side-bar{
     display: flex;
     flex-direction: column;

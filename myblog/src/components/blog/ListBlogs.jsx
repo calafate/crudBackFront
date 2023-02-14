@@ -22,10 +22,11 @@ const ListBlogs = ({ noticias, baseURL }) => {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row gx-5">
         {noticias.map((noticia) => {
           return (
             <div key={noticia._id} className="col-sm-6">
+              <hr className="item-hr"/>
               <div className="blog-container mb-5">
                 <div className="item-title">
                   <h5>{noticia.title}</h5>
@@ -43,7 +44,6 @@ const ListBlogs = ({ noticias, baseURL }) => {
                     {noticia.category}
                   </p>
                 </div>
-                
                 <div className="noticia-buttons">
                   <div className="item-link">
                     <Link className="link-blog" to={`/allblogs/${noticia._id}`}>
@@ -64,10 +64,10 @@ const ListBlogs = ({ noticias, baseURL }) => {
                       <FontAwesomeIcon icon = {faTrashCan} color="var(--danger-color)" />
                     </button>
                   </div>
-                  
                 </div>
               </div>
             </div>
+            
           );
         })}
       </div>

@@ -2,10 +2,10 @@ import { useState } from "react";
 import "../portada/portada.css";
 import "./auth.css";
 import { useNavigate, Link } from "react-router-dom";
-import axios from 'axios';
 
+/*import axios from 'axios';
 const baseURL ='http://localhost:8080';
-/* const baseURL = process.env.REACT_APP_URL; */
+ const baseURL = process.env.REACT_APP_URL; */
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,8 +13,9 @@ const Login = () => {
   let navigate = useNavigate();
 
   const login = (e) => {
-    e.preventDefault();
-    const login = {
+     e.preventDefault();
+    navigate("/allblogs");
+    /*const login = {
       email: email,
       pass: pass
     };
@@ -28,7 +29,7 @@ const Login = () => {
         console.log(err.response.request.status)
         console.log(err.response.data)
     })
-
+ */
   };
 
   return (
