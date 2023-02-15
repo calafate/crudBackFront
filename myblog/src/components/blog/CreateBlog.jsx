@@ -41,36 +41,43 @@ const CreateBlog = () => {
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("Categoría");
-  const [bdate, setBdate] = useState(dayjs(new Date()).format("YYYY-MM-DD"));
-  /* const [files, setFiles] = useState("") */
+  const [bdate, setBdate] = useState("");
+  const [files, setFiles] = useState("");
   
   const crearPublicacion = () => {
     /*const time = new Date().toLocaleTimeString('en-US');
     const formatDateTime = `${bdate}T${time}`;
-     const dateTime = Date(formatDateTime) */
-
+     const dateTime = Date(formatDateTime) 
     const publicacion = {
       title: title,
       summary: summary,
       body: body,
       category: category,
-      //image: files,
+      image: files[0],
       createdAt: bdate,
-    };
-    axios
-      .post(`${baseURL}/api/blogs/`, publicacion)
-      .then((res) => {
-        console.log(publicacion);
-        setTitle("");
-        setSummary("");
-        setBody("");
-        setCategory("");
-        //setFiles("");
-        setBdate(dayjs(new Date()).format("YYYY-MM-DD"));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    };*/
+    const data = new FormData();
+    data.set('title', title);
+    data.set('summary', summary);
+    data.set('body', body);
+    data.set('category', category);
+    data.set('image', files[0]);
+    data.set('createdAt', bdate);
+
+    console.log(data);
+      axios
+        .post(`${baseURL}/api/blogs/`, data)
+        .then((res) => {
+          setTitle("");
+          setSummary("");
+          setBody("");
+          setCategory("");
+          setFiles("");
+          setBdate(dayjs(new Date()).format("YYYY-MM-DD"));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   return (
@@ -94,16 +101,16 @@ const CreateBlog = () => {
             placeholder="Resumen de la Publicación"
             onChange={(e) => {
               setSummary(e.target.value);}}/>
-          {/* <div className="file">
+          <div className="file">
             <label htmlFor="image">Seleccione una imagen (*.jpg o *.png)</label>
             <input
               type="file"
               className="form-control mb-3"
-              id="image"
-              accept="image/png, image/jpg"
-              onChange={(e) => {
-                setFiles(e.target.files);}}/>
-          </div> */}
+              name="image"
+              accept=".jpg, .png"
+              onChange={(e) => {setFiles(e.target.files);}}
+            />
+          </div>
           <div className="quill">
             <ReactQuill
               theme="snow"
@@ -121,7 +128,7 @@ const CreateBlog = () => {
             <input
               type="date"
               className="form-control mb-3"
-              value={dayjs(bdate).format("YYYY-MM-DD")}
+              /* value={dayjs(bdate).format("YYYY-MM-DD")} */
               onChange={(e) => {
                 setBdate(e.target.value);
               }}

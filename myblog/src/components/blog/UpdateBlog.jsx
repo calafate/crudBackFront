@@ -43,7 +43,7 @@ const UpdateBlog = () => {
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
-  /* const [files, setFiles] = useState(""); */
+  const [files, setFiles] = useState("");
   const [bdate, setBdate] = useState("");
   let navigate = useNavigate();
 
@@ -56,7 +56,7 @@ const UpdateBlog = () => {
           setSummary(res.data.data.summary);
           setBody(res.data.data.body);
           setCategory(res.data.data.category);
-          // setFiles(res.data.data.image);
+          setFiles(res.data.data.image);
           setBdate(res.data.data.createdAt);
         })
         .catch((err) => {
@@ -68,23 +68,27 @@ const UpdateBlog = () => {
 
   const actualizarPublicacion = (e) => {
     e.preventDefault();
-    const time = new Date().toLocaleTimeString('en-US');
-    console.log("bdate  ",bdate)
-    const formatDateTime = `${bdate}T${time}`;
-    console.log("formatDateTime  ",formatDateTime)
-    const dateTime = Date(formatDateTime)
-    console.log("DateTime", dateTime)
 
-    const noticia = {
+/*     const noticia = {
       title: title,
       summary: summary,
       body: body,
       category: category,
       image: "imagen",
       createdAt: dateTime,
-    };
+    }; */
+    
+    const data = new FormData();
+    data.set('title', title);
+    data.set('summary', summary);
+    data.set('body', body);
+    data.set('category', category);
+    data.set('createdAt', bdate);
+    if (files?.[0]) {
+      data.set('image', files?.[0]);
+    }
     axios
-      .put(`${baseURL}/api/blogs/${id}`, noticia)
+      .put(`${baseURL}/api/blogs/${id}`, data)
       .then((res) => {
         console.log(res.data);
         if (res.data?.status === "success") {
@@ -93,7 +97,7 @@ const UpdateBlog = () => {
       })
       .catch((err) => console.log(err));
   };
-
+console.log("files = ", files)
   return (
     <div className="container main-body p-5">
       <h2>Modificar Publicación</h2>
@@ -124,8 +128,9 @@ const UpdateBlog = () => {
             <input
               type="file"
               className="form-control mb-3"
-              id="image"
-              accept="image/png, image/jpg"
+              name="image"
+              accept=".jpg, .png"
+              onChange={(e) => {setFiles(e.target.files);}}
             />
           </div>
           <div className="quill">

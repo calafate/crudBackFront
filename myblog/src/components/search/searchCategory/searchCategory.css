@@ -1,11 +1,12 @@
-.container-category-search {
+/* .container-category-search {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-}
+    
+} */
 .item-category-search{
+    border: none;
     color: var(--secondary-color);
     border-radius: 10px;
     background-color: transparent;

@@ -53,11 +53,11 @@ const handleChange = (e) => {
       setCategories(allCategories)
       setNoticiasFilter(noticias)
       return
-    }
+    } 
   const filteredData = noticias.filter(noticia => noticia.category === category);
     setNoticiasFilter(filteredData)
   }
-  const limpiarFiltroBUsqueda = (e) => {
+  const cleanFilterSearch = (e) => {
     setSearchText("")
     setNoticiasFilter(noticias)
   }
@@ -71,17 +71,15 @@ const handleChange = (e) => {
           <button className="main-button">Nueva Publicación</button>
         </a>
       </div>
-      <div className="search-bar">
-        <div>
+      <div className="search-bar-input">
+        <div className="search-bar">
           <input type="text" className="input-bar"
               placeholder="Buscar por título"
               value={searchText}
               onChange={handleChange} />
-              <button 
-                className="button-bar"
-                onClick={limpiarFiltroBUsqueda}>
-                X
-              </button>
+          <button className="button-bar" onClick={cleanFilterSearch}>
+            X
+          </button>
         </div>
         {<SearchCategory 
           categories={categories} 

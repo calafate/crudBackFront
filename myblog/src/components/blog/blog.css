@@ -1,5 +1,9 @@
 .publication-title {
+    /* background-image: url(../../img/portada.jpg); */
     color: var(--main-color);
+}
+.publication-title-title{
+    padding: 30px 100px;
 }
 .publication-body{
     color: var(--text-color);
@@ -28,6 +32,8 @@
     margin-bottom: 30px;
 }
 .button-return{
+    font-size: 12px;
+    border: none;
     background-color: transparent;
     color: var(--secondary-color);
 }

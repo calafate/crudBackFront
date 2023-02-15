@@ -34,7 +34,7 @@ const Blog = () => {
         </Link>
       </div>
       <div className="publication-title">
-        <h2 className="mt-3">{blog.title}</h2>
+        <h2 >{blog.title}</h2>
       </div>
       <hr className="publication-hr" />
       <div

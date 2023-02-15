@@ -28,10 +28,14 @@ const ListBlogs = ({ noticias, baseURL }) => {
             <div key={noticia._id} className="col-sm-6">
               <hr className="item-hr"/>
               <div className="blog-container mb-5">
+                {/* <div className="item-image">
+                    <img src={`./uploads/${noticia.image}`} alt="imagen" />
+                </div> */}
                 <div className="item-title">
                   <h5>{noticia.title}</h5>
                 </div>
                 <div className="item-summary">
+                  <h6>Nombre Imagen: {noticia.image}</h6>
                   <p>{noticia.summary}</p>
                 </div>
                 <hr />
