@@ -58,7 +58,7 @@ const CreateBlog = () => {
     data.set('image', files[0]);
     data.set('createdAt', bdate);
 
-    console.log(data);
+    console.log(files);
       axios
         .post(`${baseURL}/api/blogs/`, data)
         .then((res) => {

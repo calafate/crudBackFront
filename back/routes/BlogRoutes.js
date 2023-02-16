@@ -8,8 +8,6 @@ const storage = multer.diskStorage({
     cb(null, "./uploads");
     },
     filename: function (req, file, cb) {
-        /*const ext = file.mimetype.split("/")[1]
-        const uniqueSuffix = `${file.originalname}.${ext}`; */
         const uniqueSuffix = `${file.originalname}`;
         cb(null, uniqueSuffix);
     }

@@ -44,18 +44,30 @@ exports.createBlog = async (req, res) => {
 };
 
 exports.updateBlog = async (req, res) => {
-  try {
-    console.log("req.body", req.body)
-    const {title, summary, body, createdAt} = req.body;
-    const blog = await Blog.findByIdAndUpdate(req.params.id, {title,
-      summary,
-      body,
-      image : req.file.originalname,
-      createdAt
-    });
-    res.json({ data: blog, status: "success" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  console.log("req.body= ", req.body)
+  if (req.file) {
+    try {
+      console.log("req.file.originalname= ",req.file.originalname);
+      const {title, summary, body, createdAt} = req.body
+      const blog = await Blog.findById(req.params.id);
+      blog.title = title;
+      blog.summary = summary;
+      blog.body = body;
+      blog.createdAt = createdAt;
+      blog.image = req.file.originalname;
+      await blog.save();
+      res.json({ data: blog, status: "success" });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+    
+  } else {
+    try {
+      const blog = await Blog.findByIdAndUpdate(req.params.id, req.body);
+      res.json({ data: blog, status: "success" });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   }
 };
 
@@ -68,14 +80,3 @@ exports.deleteBlog = async (req, res) => {
   }
 };
 
-
-
-/******* */
-/* exports.updateBlog = async (req, res) => {
-  try {
-    const blog = await Blog.findByIdAndUpdate(req.params.id, req.body);
-    res.json({ data: blog, status: "success" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-}; */

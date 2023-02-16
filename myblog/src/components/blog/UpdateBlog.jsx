@@ -44,6 +44,7 @@ const UpdateBlog = () => {
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
   const [files, setFiles] = useState("");
+  const [filesAnt, setFilesAnt] = useState("");
   const [bdate, setBdate] = useState("");
   const navigate = useNavigate();
 
@@ -57,6 +58,7 @@ const UpdateBlog = () => {
           setBody(res.data.data.body);
           setCategory(res.data.data.category);
           setFiles(res.data.data.image);
+          setFilesAnt(res.data.data.image);
           setBdate(res.data.data.createdAt);
         })
         .catch((err) => {
@@ -68,14 +70,25 @@ const UpdateBlog = () => {
 
   const actualizarPublicacion = (e) => {
     e.preventDefault();
+    console.log("files= ",files)
+    console.log("typeof de files= ",typeof files);
+    console.log("filesAnt =",filesAnt);
+
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
     data.set('body', body);
-    /* data.set('image', files); */
     data.set('category', category);
     data.set('createdAt', bdate);
-    
+    if ( typeof files[0] === 'object') {
+      console.log("cambio la imagen")
+      data.set('image', files[0]);
+    } else {
+      data.set('image', filesAnt);
+    }
+
+    console.log("formdata files",files);
+
     axios
       .put(`${baseURL}/api/blogs/${id}`, data)
       .then((res) => {
@@ -84,11 +97,11 @@ const UpdateBlog = () => {
           navigate("/allblogs");
         }
       })
-      .catch((err) => console.log(err));
-      alert("verifique que los campos esten correctos")
+      .catch((err) => {console.log(err); alert("verifique que los campos esten correctos");})
+      
   };
 
-  const imgAnt = files;
+
   return (
     <div className="container main-body p-5">
       <h2>Modificar Publicación</h2>
@@ -124,7 +137,7 @@ const UpdateBlog = () => {
               onChange={(e) => {setFiles(e.target.files);}}
             />
           </div>
-          <h5>Imagen Seleccionada : {imgAnt}</h5>
+          <h5>Imagen Seleccionada : {filesAnt}</h5>
           <div className="quill">
             <ReactQuill
               theme="snow"
