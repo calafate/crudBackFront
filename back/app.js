@@ -22,6 +22,7 @@ app.use("/", indexRouter);
 app.use("/api/blogs", blogRouter);
 app.use("/user", userRouter);
 
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 const {connect} = require("./db/db");
 connect();

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
 import ReactQuill from "react-quill";
@@ -43,19 +43,13 @@ const CreateBlog = () => {
   const [category, setCategory] = useState("Categoría");
   const [bdate, setBdate] = useState("");
   const [files, setFiles] = useState("");
+  const navigate = useNavigate();
   
   const crearPublicacion = () => {
     /*const time = new Date().toLocaleTimeString('en-US');
     const formatDateTime = `${bdate}T${time}`;
-     const dateTime = Date(formatDateTime) 
-    const publicacion = {
-      title: title,
-      summary: summary,
-      body: body,
-      category: category,
-      image: files[0],
-      createdAt: bdate,
-    };*/
+     const dateTime = Date(formatDateTime) */
+
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
@@ -74,9 +68,11 @@ const CreateBlog = () => {
           setCategory("");
           setFiles("");
           setBdate(dayjs(new Date()).format("YYYY-MM-DD"));
+          navigate("/allblogs");
         })
         .catch((err) => {
           console.log(err);
+          alert("verifique que todos los datos esten completos")
         });
   };
 

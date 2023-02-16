@@ -9,6 +9,17 @@
     color: var(--text-color);
     text-align: justify;
 }
+.publication-img{
+    width: 100%;
+    height: 350px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.publication-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .publication-hr{
     height: 12px;
     border: 0;

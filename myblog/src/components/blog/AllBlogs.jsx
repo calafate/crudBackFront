@@ -66,18 +66,18 @@ const handleChange = (e) => {
   return (
     <div className="container">
       <h2 className="main-title m-3">Publicaciones</h2>
-      <div className="d-flex justify-content-end">
+      <div className="button-create-post">
         <a href="/createblog">
           <button className="main-button">Nueva Publicación</button>
         </a>
       </div>
       <div className="search-bar-input">
         <div className="search-bar">
-          <input type="text" className="input-bar"
+          <input type="text" className="search-input-bar"
               placeholder="Buscar por título"
               value={searchText}
               onChange={handleChange} />
-          <button className="button-bar" onClick={cleanFilterSearch}>
+          <button className="search-button-bar" onClick={cleanFilterSearch}>
             X
           </button>
         </div>

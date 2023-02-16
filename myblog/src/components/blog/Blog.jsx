@@ -37,6 +37,11 @@ const Blog = () => {
         <h2 >{blog.title}</h2>
       </div>
       <hr className="publication-hr" />
+      {blog.image ? 
+      <div className="publication-img">
+        <img src={`${baseURL}/uploads/${blog.image}`} alt="imagen" />
+      </div>
+      : <p></p>}
       <div
         dangerouslySetInnerHTML={{ __html: blog.body }}
         className="publication-body mb-3"

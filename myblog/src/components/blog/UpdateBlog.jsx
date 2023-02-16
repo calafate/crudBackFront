@@ -45,7 +45,7 @@ const UpdateBlog = () => {
   const [category, setCategory] = useState("");
   const [files, setFiles] = useState("");
   const [bdate, setBdate] = useState("");
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const verNoticiaXid = async () => {
@@ -68,25 +68,14 @@ const UpdateBlog = () => {
 
   const actualizarPublicacion = (e) => {
     e.preventDefault();
-
-/*     const noticia = {
-      title: title,
-      summary: summary,
-      body: body,
-      category: category,
-      image: "imagen",
-      createdAt: dateTime,
-    }; */
-    
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
     data.set('body', body);
+    /* data.set('image', files); */
     data.set('category', category);
     data.set('createdAt', bdate);
-    if (files?.[0]) {
-      data.set('image', files?.[0]);
-    }
+    
     axios
       .put(`${baseURL}/api/blogs/${id}`, data)
       .then((res) => {
@@ -96,8 +85,10 @@ const UpdateBlog = () => {
         }
       })
       .catch((err) => console.log(err));
+      alert("verifique que los campos esten correctos")
   };
-console.log("files = ", files)
+
+  const imgAnt = files;
   return (
     <div className="container main-body p-5">
       <h2>Modificar Publicación</h2>
@@ -133,6 +124,7 @@ console.log("files = ", files)
               onChange={(e) => {setFiles(e.target.files);}}
             />
           </div>
+          <h5>Imagen Seleccionada : {imgAnt}</h5>
           <div className="quill">
             <ReactQuill
               theme="snow"

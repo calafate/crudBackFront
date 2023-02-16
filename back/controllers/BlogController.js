@@ -45,6 +45,7 @@ exports.createBlog = async (req, res) => {
 
 exports.updateBlog = async (req, res) => {
   try {
+    console.log("req.body", req.body)
     const {title, summary, body, createdAt} = req.body;
     const blog = await Blog.findByIdAndUpdate(req.params.id, {title,
       summary,
