@@ -10,7 +10,6 @@ const Register = () => {
 
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
-  const [fecNacimiento, setFecNacimiento] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
@@ -19,7 +18,6 @@ const Register = () => {
     const usuario = {
         nombre: nombre,
         apellido: apellido,
-        fecNacimiento: fecNacimiento,
         email: email,
         pass: pass
     }
@@ -53,12 +51,6 @@ const Register = () => {
         />
         <input
           type="text"
-          placeholder="Ingrese Fecha de Nacimiento"
-          value={fecNacimiento}
-          onChange={(e) => {setFecNacimiento(e.target.value)}}
-        />
-        <input
-          type="text"
           placeholder="Ingrese email"
           value={email}
           onChange={(e) => {
@@ -76,6 +68,7 @@ const Register = () => {
         <p>¿Ya tenés una cuenta?</p>
         <p><Link className="text-reset-auth" to="/auth/login">Iniciar Sesión</Link></p>
       </div>
+      
     </div>
   );
 };

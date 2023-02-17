@@ -29,7 +29,6 @@ return (
                   <th scope="col">#</th>
                   <th scope="col">Apellido</th>
                   <th scope="col">Nombre</th>
-                  <th scope="col">Fecha Nac.</th>
                   <th scope="col">Email</th>
                   <th scope="col">Pass</th>
                 </tr>
@@ -41,7 +40,6 @@ return (
                       <th scope="row">{i}</th>
                       <td>{user.apellido}</td>
                       <td>{user.nombre}</td>
-                      <td>{user.fecNacimiento}</td>
                       <td>{user.email}</td>
                       <td>{user.pass}</td>
                     </tr>

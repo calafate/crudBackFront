@@ -2,40 +2,42 @@ import { useState } from "react";
 import "../portada/portada.css";
 import "./auth.css";
 import { useNavigate, Link } from "react-router-dom";
+import axios from 'axios';
+import ErrorMsg from "../common/ErrorMsg";
+import Spinner from "../common/Spinner";
 
-/*import axios from 'axios';
 const baseURL ='http://localhost:8080';
- const baseURL = process.env.REACT_APP_URL; */
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [erMsg, setErMsg] = useState("")
   let navigate = useNavigate();
 
   const login = (e) => {
-     e.preventDefault();
-    navigate("/allblogs");
-    /*const login = {
+    e.preventDefault();
+    const login = {
       email: email,
       pass: pass
-    };
-    axios.post(`${baseURL}/user/login`, login, {credentials: 'include'})
+      };
+
+    axios.post(`${baseURL}/user/login`, login)
     .then(res => {
         console.log(res.data.data);
         navigate("/allblogs");
     })
     .catch((err) => {
-        alert("Usuario o contraseña incorrectos")
+        setErMsg("Usuario o contraseña incorrectos")
         console.log(err.response.request.status)
         console.log(err.response.data)
     })
- */
   };
 
   return (
     <div className="container-fluid portada">
       <form className="login" onSubmit={login}>
         <h2 className="login-title">Iniciar sesión</h2>
+        {erMsg ? <ErrorMsg /> :  <Spinner/>}
         <input 
           type="text"
           className="login-mail"

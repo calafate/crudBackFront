@@ -1,14 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const {check} = require("express-validator")
-const registerUserValidate = require("../middleware/userValidate")
-const {
-    registerUser,
-    loginUser,
-    listUsers
-} = require("../controllers/UserController");
+const {check} = require('express-validator');
 
-router.post("/register", [
+exports.registerUserValidate = [
     check('name')
         .exists()
         .not()
@@ -33,9 +25,5 @@ router.post("/register", [
         .isEmpty()
         .isLength({min:4})
         .withMessage('La contraseña debe tener 4 o mas caracteres')
-], registerUser);
-router.post("/login", loginUser);
-router.get("/list", listUsers);
+]
 
-
-module.exports = router;

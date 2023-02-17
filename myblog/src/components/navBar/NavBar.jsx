@@ -1,8 +1,7 @@
 import {NavLink} from 'react-router-dom';
 
 
-
-const NavBar = () => {
+const NavBar = (userLogin) => {
   
   return (
     <>
