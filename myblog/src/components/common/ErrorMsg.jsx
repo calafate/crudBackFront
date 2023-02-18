@@ -1,11 +1,11 @@
 
 
-const ErrorMsg = () => {
+const ErrorMsg = (mensaje) => {
 
 
   return (
     <div >
-        <h3 className="text-danger">Mensaje de error</h3>
+        <h3 className="text-danger">{mensaje}</h3>
     </div>
   )
 }

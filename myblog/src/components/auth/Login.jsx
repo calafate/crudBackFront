@@ -3,15 +3,13 @@ import "../portada/portada.css";
 import "./auth.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
-import ErrorMsg from "../common/ErrorMsg";
-import Spinner from "../common/Spinner";
 
 const baseURL ='http://localhost:8080';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [erMsg, setErMsg] = useState("")
+  const [isError, setIsError] = useState(false)
   let navigate = useNavigate();
 
   const login = (e) => {
@@ -19,7 +17,8 @@ const Login = () => {
     const login = {
       email: email,
       pass: pass
-      };
+    };
+    console.log("login= ", login)
 
     axios.post(`${baseURL}/user/login`, login)
     .then(res => {
@@ -27,17 +26,20 @@ const Login = () => {
         navigate("/allblogs");
     })
     .catch((err) => {
-        setErMsg("Usuario o contraseña incorrectos")
-        console.log(err.response.request.status)
-        console.log(err.response.data)
+      setIsError(true);
+        console.log(err.response);
     })
+    setIsError(false);
   };
 
   return (
     <div className="container-fluid portada">
       <form className="login" onSubmit={login}>
         <h2 className="login-title">Iniciar sesión</h2>
-        {erMsg ? <ErrorMsg /> :  <Spinner/>}
+        {isError&& 
+          <div className="alert alert-danger p-1" role="alert">
+          Usuario o contraseña invalidos
+          </div>}
         <input 
           type="text"
           className="login-mail"

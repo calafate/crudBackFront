@@ -48,11 +48,11 @@ exports.loginUser = async (req, res) => {
       } else {
         console.log("Contraseña incorrecta")
         res.status(400).json("Contraseña incorrecta");
-        res.status(501).json({ error: err.message }); 
+        /* res.status(501).json({ error: err.message });  */
       }
     } else {
       console.log("Usuario inexistente, debe Registrarse")
-      res.status(501).json({ error: err.message });
+      res.status(400).json({ error: "Usuario inexistente, debe Registrarse" });
     }
   } catch (err) {
     res.status(501).json({ error: err.message });

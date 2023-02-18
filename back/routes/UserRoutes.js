@@ -8,9 +8,8 @@ const {
     listUsers
 } = require("../controllers/UserController");
 
-router.post("/register", [
+router.post("/register",[
     check('name')
-        .exists()
         .not()
         .isEmpty()
         .isLength({min:3})
@@ -33,7 +32,8 @@ router.post("/register", [
         .isEmpty()
         .isLength({min:4})
         .withMessage('La contraseña debe tener 4 o mas caracteres')
-], registerUser);
+] , registerUser);
+
 router.post("/login", loginUser);
 router.get("/list", listUsers);
 
