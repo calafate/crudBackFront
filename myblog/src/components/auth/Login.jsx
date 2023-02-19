@@ -9,7 +9,7 @@ const baseURL ='http://localhost:8080';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false);
   let navigate = useNavigate();
 
   const login = (e) => {
@@ -18,7 +18,6 @@ const Login = () => {
       email: email,
       pass: pass
     };
-    console.log("login= ", login)
 
     axios.post(`${baseURL}/user/login`, login)
     .then(res => {
@@ -27,7 +26,7 @@ const Login = () => {
     })
     .catch((err) => {
       setIsError(true);
-        console.log(err.response);
+      console.log(err.response);
     })
     setIsError(false);
   };
@@ -38,7 +37,7 @@ const Login = () => {
         <h2 className="login-title">Iniciar sesión</h2>
         {isError&& 
           <div className="alert alert-danger p-1" role="alert">
-          Usuario o contraseña invalidos
+          Usuario o contraseña inválidos
           </div>}
         <input 
           type="text"
@@ -46,6 +45,7 @@ const Login = () => {
           placeholder="Ingrese email"
           value={email}
           onChange={(e) => {setEmail(e.target.value)}}
+          required
         />
         <input
           type="password"
@@ -53,6 +53,7 @@ const Login = () => {
           placeholder="Ingrese password"
           value={pass}
           onChange={(e) => {setPass(e.target.value)}}
+          required
         />
         <button className="login-button">Iniciar sesión</button>
       </form>

@@ -46,9 +46,6 @@ const CreateBlog = () => {
   const navigate = useNavigate();
   
   const crearPublicacion = () => {
-    /*const time = new Date().toLocaleTimeString('en-US');
-    const formatDateTime = `${bdate}T${time}`;
-     const dateTime = Date(formatDateTime) */
 
     const data = new FormData();
     data.set('title', title);
@@ -71,8 +68,8 @@ const CreateBlog = () => {
           navigate("/allblogs");
         })
         .catch((err) => {
-          console.log(err);
-          alert("verifique que todos los datos esten completos")
+          console.log(err.response.data);
+          /* alert("verifique que todos los datos esten completos") */
         });
   };
 
@@ -89,14 +86,16 @@ const CreateBlog = () => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
+            required
           />
           <input
             type="text"
             className="form-control mb-3"
             value={summary}
             placeholder="Resumen de la Publicación"
-            onChange={(e) => {
-              setSummary(e.target.value);}}/>
+            onChange={(e) => {setSummary(e.target.value);}}
+            required
+          />
           <div className="file">
             <label htmlFor="image">Seleccione una imagen (*.jpg o *.png)</label>
             <input
@@ -105,6 +104,7 @@ const CreateBlog = () => {
               name="image"
               accept=".jpg, .png"
               onChange={(e) => {setFiles(e.target.files);}}
+              required
             />
           </div>
           <div className="quill">
@@ -113,28 +113,25 @@ const CreateBlog = () => {
               modules={modules}
               formats={formats}
               value={body}
-              onChange={(newValue) => {
-                setBody(newValue);
-              }}
+              onChange={(newValue) => {setBody(newValue)}}
+              required
             />
           </div>
         </div>
         <div className="side-bar">
           <div>
             <input
+              required
               type="date"
               className="form-control mb-3"
               /* value={dayjs(bdate).format("YYYY-MM-DD")} */
-              onChange={(e) => {
-                setBdate(e.target.value);
-              }}
+              onChange={(e) => {setBdate(e.target.value)}}
             />
             <select
+              required
               className="form-select mb-3"
-              onChange={(e) => {
-                setCategory(e.target.value);
-              }}>
-                <option>Categoría</option>
+              onChange={(e) => {setCategory(e.target.value)}}>
+              <option>Categoría</option>
               <option value="Vida Sana">Vida Sana</option>
               <option value="Educación">Educación</option>
               <option value="Deporte">Deporte</option>

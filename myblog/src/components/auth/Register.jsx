@@ -12,6 +12,8 @@ const Register = () => {
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [msgError, setMsgError] = useState([]);
 
   const register = (e) => {
     e.preventDefault();
@@ -28,26 +30,36 @@ const Register = () => {
             navigate("/auth/login");
         })
         .catch((err) => {
-            alert("Datos Incorrectos")
-            console.log(err)
+          console.log(err.response.data.errors)
+          setIsError(true);
+          setMsgError(err.response.data.errors)
         })
+    setIsError(false)
 }
 
   return (
     <div className="container-fluid portada">
       <form className="register" onSubmit={register}>
         <h2 className="register-title">Registro de Usuario</h2>
+        {isError&& 
+          <div className="alert alert-danger p-1" role="alert">
+            {msgError.map((item,i)=> {
+              return <p key={i}>{item.msg}</p>
+            })}
+          </div>}
         <input
           type="text"
           placeholder="Ingrese Nombre"
           value={nombre}
           onChange={(e) => {setNombre(e.target.value)}}
+          required
         />
         <input
           type="text"
           placeholder="Ingrese Apellido"
           value={apellido}
           onChange={(e) => {setApellido(e.target.value)}}
+          required
         />
         <input
           type="text"
@@ -55,12 +67,14 @@ const Register = () => {
           value={email}
           onChange={(e) => {
           setEmail(e.target.value)}}
+          required
         />
         <input
           type="password"
           placeholder="Ingrese contraseña"
           value={pass}
           onChange={(e) => {setPass(e.target.value)}}
+          required
         />
         <button className="register-button">Guardar </button>
       </form>

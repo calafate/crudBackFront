@@ -195,3 +195,13 @@ const UpdateBlog = () => {
 };
 
 export default UpdateBlog;
+
+
+/* const fs = require('fs')
+
+try {
+  fs.unlinkSync('./old-article.md')
+  console.log('File removed')
+} catch(err) {
+  console.error('Something wrong happened removing the file', err)
+} */

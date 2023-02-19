@@ -26,14 +26,20 @@ const {
 router.get("/", getAllBlogs);
 router.get("/:id",getBlogById);
 
-router.post("/", upload.single("image"), createBlog);
-router.put("/:id", upload.single("image"), updateBlog);
+router.post("/", upload.single("image"), [
+  check("title").not().isEmpty().withMessage("Ingrese Titulo"),
+  check("summary").not().isEmpty().withMessage("Ingrese un Resumen"),
+  check("body").not().isEmpty().withMessage("Ingrese texto de la Publicación"),
+  check("category").not().isEmpty().withMessage("Ingrese una Categoría")
+], createBlog);
+
+router.put("/:id", upload.single("image"), [
+  check("title").not().isEmpty().withMessage("Ingrese Titulo"),
+  check("summary").not().isEmpty().withMessage("Ingrese un Resumen"),
+  check("body").not().isEmpty().withMessage("Ingrese texto de la Publicación"),
+  check("category").not().isEmpty().withMessage("Ingrese una Categoría")
+], updateBlog);
 
 router.delete("/:id",deleteBlog);
 
 module.exports = router;
-
-/* [
-  check('title').not().isEmpty().withMessage('Ingrese un título'),
-  check('body').not().isEmpty().withMessage('Ingrese el texto de la nota'),
-] */

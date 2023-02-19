@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
-const {validationResult} = require("express-validator")
+const {validationResult} = require("express-validator");
 
 exports.listUsers = async (req, res) => {
   try {
@@ -37,25 +37,27 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
+  const errors = validationResult(req);
   const {email, pass} = req.body;
-  try {
-    const user = await User.findOne({email});
-    if (user !== null) {
-      const passOK = bcrypt.compareSync(pass, user.pass);
-      if (passOK) {
-        console.log("login exitoso")
-        res.json({ data: user, status: "success" });
+  if (errors.isEmpty()) {
+    try {
+      const user = await User.findOne({email});
+      if (user !== null) {
+        const passOK = bcrypt.compareSync(pass, user.pass);
+        if (passOK) {
+          res.json({ data: user, status: "Login exitoso" });
+        } else {
+          res.status(400).json({error: "Contraseña incorrecta"});
+        }
       } else {
-        console.log("Contraseña incorrecta")
-        res.status(400).json("Contraseña incorrecta");
-        /* res.status(501).json({ error: err.message });  */
+        res.status(400).json({ error: "Usuario inexistente, debe Registrarse" });
       }
-    } else {
-      console.log("Usuario inexistente, debe Registrarse")
-      res.status(400).json({ error: "Usuario inexistente, debe Registrarse" });
+    } catch (err) {
+      res.status(501).json({ error: err.message });
     }
-  } catch (err) {
-    res.status(501).json({ error: err.message });
+  } else {
+    return res.status(400).json({ errors: errors.array() });
   }
+  
 };
 

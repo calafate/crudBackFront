@@ -26,7 +26,7 @@ const ListBlogs = ({ noticias, baseURL }) => {
       <div className="row gx-5">
         {noticias.map((noticia) => {
           return (
-            <div key={noticia._id} className="col-sm-6">
+            <div key={noticia._id} className="col-sm-4">
               <div className="blog-container mb-5">
                 <div className="blog-img-container">
                   {noticia.image ? 
@@ -36,7 +36,7 @@ const ListBlogs = ({ noticias, baseURL }) => {
                 <div className="blog-text-container">
                   <div className="item-title">
                   <p></p>
-                    <h5>{noticia.title}</h5>
+                    <h6>{noticia.title}</h6>
                   </div>
                   <div className="item-summary">
                     <p>{noticia.summary}</p>
