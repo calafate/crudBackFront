@@ -4,10 +4,10 @@ const { User } = require('../models/User')
 
 const blogValidationRules = () => {
   return [
-    check("title").not().isEmpty().withMessage("Ingrese Titulo"),
-    check("summary").not().isEmpty().withMessage("Ingrese un Resumen"),
+    check("title").not().isEmpty().withMessage("Ingrese titulo de la Publicación"),
+    check("summary").not().isEmpty().withMessage("Ingrese resumen de la Publicación"),
     check("body").not().isEmpty().withMessage("Ingrese texto de la Publicación"),
-    check("category").not().isEmpty().withMessage("Ingrese una Categoría")
+    check("category").not().isEmpty().withMessage("Ingrese una categoría")
   ]
 }
 

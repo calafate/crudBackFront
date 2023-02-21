@@ -1,6 +1,6 @@
 const Blog = require("../models/Blog");
 const { validationResult } = require("express-validator");
-const { json } = require("express");
+/* const { json } = require("express"); */
 const fs = require('fs');
 
 
@@ -23,8 +23,6 @@ exports.getBlogById = async (req, res) => {
 };
 
 exports.createBlog = async (req, res) => {
-  const errors = validationResult(req);
-  if (errors.isEmpty()) {
     try {
       const {title, summary, body, createdAt} = req.body
       const blog = new Blog({
@@ -37,17 +35,14 @@ exports.createBlog = async (req, res) => {
       await blog.save();
       res.json({ data: blog, status: "success" });
     } catch (err) {
-      res.status(501).json({ errors: err.message });
+      const errors = []
+      errors.push({msg: "Error en el envio (501)"})
+      res.status(501).json({ errors: errors });
     }
-  } else {
-    res.status(400).json({ errors: errors.array() });
-  }
-  
 };
 
 exports.updateBlog = async (req, res) => {
-  const errors = validationResult(req);
-  if (errors.isEmpty()) {
+    const errors = []
     if (req.file) {
       try {
         const {title, summary, body, createdAt} = req.body
@@ -56,6 +51,8 @@ exports.updateBlog = async (req, res) => {
         try {
           fs.unlinkSync(`./uploads/${blog.image}`)
         } catch(err) {
+          errors.push({msg: "Error al tratar de borrar el archivo"})
+          res.json({ errors: errors });
           console.error('Error al tratar de borrar el archivo', err)
         }
         blog.title = title;
@@ -66,27 +63,28 @@ exports.updateBlog = async (req, res) => {
         await blog.save();
         res.json({ data: blog, status: "success" });
       } catch (err) {
-        res.status(500).json({ error: err.message });
+        errors.push({msg: "Error en el envio (500)"})
+        res.status(500).json({ errors: errors });
       }
     } else {
       try {
         const blog = await Blog.findByIdAndUpdate(req.params.id, req.body);
         res.json({ data: blog, status: "success" });
       } catch (err) {
-        res.status(500).json({ error: err.message });
+        errors.push({msg: "Error en el envio (500)"})
+        res.status(500).json({ errors: errors });
       }
     }
-  } else {
-    return res.status(400).json({ errors: errors.array() });
-  }
 };
 
 exports.deleteBlog = async (req, res) => {
+  const errors = []
   try {
     const blog = await Blog.findByIdAndDelete(req.params.id);
     res.json({ data: blog, status: "success" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    errors.push({msg: "Error en el envio (500)"})
+    res.status(500).json({ errors: errors });
   }
 };
 

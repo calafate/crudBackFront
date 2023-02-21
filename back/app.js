@@ -5,6 +5,7 @@ const cors = require("cors");
 const blogRouter = require("./routes/BlogRoutes");
 const userRouter = require("./routes/UserRoutes");
 const indexRouter = require ("./routes/index");
+const pokeRouter = require ("./routes/pokeRoutes");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/api/blogs", blogRouter);
 app.use("/user", userRouter);
+app.use("/pokemon", pokeRouter);
 
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
