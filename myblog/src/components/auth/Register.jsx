@@ -23,7 +23,6 @@ const Register = () => {
         email: email,
         pass: pass
     }
-
     axios.post(`${baseURL}/user/register`, usuario)
         .then(res => {
             console.log(res.data.data);
@@ -32,7 +31,7 @@ const Register = () => {
         .catch((err) => {
           console.log(err.response.data.errors)
           setIsError(true);
-          setMsgError(err.response.data.errors)
+          setMsgError(err.response.data.errors);
         })
     setIsError(false)
 }

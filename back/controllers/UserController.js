@@ -1,6 +1,5 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
-const {validationResult} = require("express-validator");
 
 exports.listUsers = async (req, res) => {
   try {
@@ -11,53 +10,48 @@ exports.listUsers = async (req, res) => {
   }
 };
 
-
 exports.registerUser = async (req, res) => {
-  const errors = validationResult(req);
-  if (errors.isEmpty()) {
-    let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(req.body.pass, salt);
-    const registerUser = {
-      nombre: req.body.nombre,
-      apellido: req.body.apellido,
-      email: req.body.email,
-      pass: hash,
-    };
+  const usuario = User.findOne({email: req.body.email});
     try {
-      const user = new User(registerUser);
-      await user.save();
-      res.json({ data: user, status: "success" });
-      res.send("Validacioón exitosa")
+      if (usuario !== null) {
+        let salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(req.body.pass, salt);
+        const registerUser = {
+          nombre: req.body.nombre,
+          apellido: req.body.apellido,
+          email: req.body.email,
+          pass: hash,
+        };
+        const user = new User(registerUser);
+        await user.save();
+        res.json({ status: "success" });
+      } 
     } catch (err) {
-      res.status(501).json({ error: err.message });
+      const errors = []
+      errors.push({msg: "El email ya esta registrado"})
+      res.status(501).json({errors: errors});
     }
-  } else {
-    return res.status(400).json({ errors: errors.array() });
-  }
 };
 
 exports.loginUser = async (req, res) => {
-  const errors = validationResult(req);
-  const {email, pass} = req.body;
-  if (errors.isEmpty()) {
-    try {
-      const user = await User.findOne({email});
-      if (user !== null) {
-        const passOK = bcrypt.compareSync(pass, user.pass);
-        if (passOK) {
-          res.json({ data: user, status: "Login exitoso" });
-        } else {
-          res.status(400).json({error: "Contraseña incorrecta"});
-        }
+  const errors = []
+  try {
+    const { email, pass } = req.body;
+    const user = await User.findOne({ email });
+    if (user !== null) {
+      const passOK = bcrypt.compareSync(pass, user.pass);
+      if (passOK) {
+        res.json({ data: user, status: "Login exitoso" });
       } else {
-        res.status(400).json({ error: "Usuario inexistente, debe Registrarse" });
+        errors.push({msg: "Contraseña incorrecta"})
+        res.status(400).json({ errors: errors });
       }
-    } catch (err) {
-      res.status(501).json({ error: err.message });
+    } else {
+      errors.push({msg: "Usuario inexistente, debe Registrarse"})
+      res.status(400).json({ errors: errors });
     }
-  } else {
-    return res.status(400).json({ errors: errors.array() });
+  } catch (err) {
+    errors.push({msg: "Error en el envío de la solicitud (501)"})
+    res.status(501).json({ error: errors });
   }
-  
 };
-

@@ -1,5 +1,5 @@
 # Crear un CRUD con Express y MongoDB
-## El esquema es un Blog 
+## El esquema es un Blog básico
 
 ## Contenido
 
@@ -14,7 +14,7 @@
 - [cors] - Es una característica de seguridad del navegador que restringe las solicitudes HTTP de origen cruzado que se inician desde secuencias de comandos que se ejecutan en el navegador.
 - [morgan] - Es una gran herramienta que registra las requests junto con otra información dependiendo de su configuración y el ajuste preestablecido utilizado. Resulta muy útil durante la depuración y también si desea crear archivos de registro.
 - [dotenv] - Es un módulo que permite cargar las variables de entorno de un proyecto node desde un archivo.
-- [express-Validator] - 
+- [Express-Validator] - Es un conjunto de middlewares express js que envuelve el validador validator js y otras funciones de sanitización.
 - [bcryptjs] - Bcrypt es una función de hashing de passwords, basado en el cifrado de Blowfish. Lleva incorporado un valor llamado salt, que es un fragmento aleatorio que se usará para generar el hash asociado a la password, y se guardará junto con ella en la base de datos. Así se evita que dos passwords iguales generen el mismo hash y los problemas que ello conlleva.
 - [express-session] -  
 - [cookie-parser] - 

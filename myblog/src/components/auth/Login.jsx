@@ -10,6 +10,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [isError, setIsError] = useState(false);
+  const [msgError, setMsgError] = useState([]);
+
   let navigate = useNavigate();
 
   const login = (e) => {
@@ -18,18 +20,18 @@ const Login = () => {
       email: email,
       pass: pass
     };
-
     axios.post(`${baseURL}/user/login`, login)
-    .then(res => {
-        console.log(res.data.data);
-        navigate("/allblogs");
-    })
-    .catch((err) => {
-      setIsError(true);
-      console.log(err.response);
-    })
-    setIsError(false);
-  };
+      .then(res => {
+          console.log(res.data.data);
+          navigate("/allblogs");
+      })
+      .catch((err) => {
+        console.log(err.response.data.errors);
+        setIsError(true);
+        setMsgError(err.response.data.errors);
+      })
+      setIsError(false);
+    };
 
   return (
     <div className="container-fluid portada">
@@ -37,7 +39,10 @@ const Login = () => {
         <h2 className="login-title">Iniciar sesión</h2>
         {isError&& 
           <div className="alert alert-danger p-1" role="alert">
-          Usuario o contraseña inválidos
+            {msgError.map((item,i)=> {
+              return <p key={i}>{item.msg}</p>
+            })}
+          {/* Usuario o contraseña inválidos */}
           </div>}
         <input 
           type="text"

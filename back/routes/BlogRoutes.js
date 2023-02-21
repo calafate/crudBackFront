@@ -1,7 +1,9 @@
 const express = require("express");
-const {check} = require("express-validator");
 const router = express.Router();
+const {getAllBlogs, createBlog, getBlogById, updateBlog, deleteBlog} = require("../controllers/BlogController");
+const {blogValidationRules, validarID, validate} = require("../middleware/validator");
 
+// MULTER
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -14,32 +16,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage, dest: 'uploads' });
 
-const {
-  getAllBlogs,
-  createBlog,
-  getBlogById,
-  updateBlog,
-  deleteBlog,
-} = require("../controllers/BlogController");
-
-
+// RUTAS
 router.get("/", getAllBlogs);
 router.get("/:id",getBlogById);
+router.post("/", upload.single("image"), blogValidationRules(), validate, createBlog);
+router.put("/:id", upload.single("image"), blogValidationRules(), validate, updateBlog);
+router.delete("/:id", validarID, deleteBlog);
 
-router.post("/", upload.single("image"), [
-  check("title").not().isEmpty().withMessage("Ingrese Titulo"),
-  check("summary").not().isEmpty().withMessage("Ingrese un Resumen"),
-  check("body").not().isEmpty().withMessage("Ingrese texto de la Publicación"),
-  check("category").not().isEmpty().withMessage("Ingrese una Categoría")
-], createBlog);
-
-router.put("/:id", upload.single("image"), [
-  check("title").not().isEmpty().withMessage("Ingrese Titulo"),
-  check("summary").not().isEmpty().withMessage("Ingrese un Resumen"),
-  check("body").not().isEmpty().withMessage("Ingrese texto de la Publicación"),
-  check("category").not().isEmpty().withMessage("Ingrese una Categoría")
-], updateBlog);
-
-router.delete("/:id",deleteBlog);
 
 module.exports = router;

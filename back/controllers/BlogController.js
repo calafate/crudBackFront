@@ -26,26 +26,21 @@ exports.createBlog = async (req, res) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
     try {
-      const err = validationResult(req);
-      if (err.isEmpty()) {
-        const {title, summary, body, createdAt} = req.body
-        const blog = new Blog({
-          title,
-          summary,
-          body,
-          image : req.file.originalname,
-          createdAt
-        });
-        await blog.save();
-        res.json({ data: blog, status: "success" });
-      } else {
-        res.status(501).json({ error: err });
-      }
+      const {title, summary, body, createdAt} = req.body
+      const blog = new Blog({
+        title,
+        summary,
+        body,
+        image : req.file.originalname,
+        createdAt
+      });
+      await blog.save();
+      res.json({ data: blog, status: "success" });
     } catch (err) {
-      res.status(501).json({ error: err.message });
+      res.status(501).json({ errors: err.message });
     }
   } else {
-    return res.status(400).json({ errors: errors.array() });
+    res.status(400).json({ errors: errors.array() });
   }
   
 };
