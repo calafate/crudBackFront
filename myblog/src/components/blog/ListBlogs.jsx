@@ -68,11 +68,9 @@ const ListBlogs = ({ noticias, baseURL }) => {
                       </button>
                     </div>
                 </div>
-                
                 </div>
               </div>
             </div>
-            
           );
         })}
       </div>

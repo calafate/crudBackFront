@@ -24,14 +24,16 @@ exports.getBlogById = async (req, res) => {
 
 exports.createBlog = async (req, res) => {
     try {
-      const {title, summary, body, createdAt} = req.body
+      const {title, summary, body, category, createdAt} = req.body
       const blog = new Blog({
         title,
         summary,
         body,
+        category,
         image : req.file.originalname,
         createdAt
       });
+      console.log(blog)
       await blog.save();
       res.json({ data: blog, status: "success" });
     } catch (err) {
@@ -81,6 +83,7 @@ exports.deleteBlog = async (req, res) => {
   const errors = []
   try {
     const blog = await Blog.findByIdAndDelete(req.params.id);
+    fs.unlinkSync(`./uploads/${blog.image}`)
     res.json({ data: blog, status: "success" });
   } catch (err) {
     errors.push({msg: "Error en el envio (500)"})

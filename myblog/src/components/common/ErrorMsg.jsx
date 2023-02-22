@@ -1,11 +1,10 @@
 
 
-const ErrorMsg = (mensaje) => {
-
-
+const ErrorMsg = (msgError) => {
   return (
-    <div >
-        <h3 className="text-danger">{mensaje}</h3>
+    
+    <div className="alert alert-danger p-1" role="alert">
+      {msgError.map((item,i)=> {return <p key={i}>{item.msg}</p>})}
     </div>
   )
 }

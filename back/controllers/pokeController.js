@@ -1,11 +1,12 @@
 const axios = require("axios");
 
-const pokemonList = (req, res) => {
-  /* res.send ("<h1>Pokemones</h1>") */
-    const URL = "https://pokeapi.co:443/api/v2/pokemon/?offset=0&limit=5";
-    axios.get(URL)
-        .then((res) => {console.log(res.data.results);})
-        .catch((err) => {console.log(err);});
+const pokemonList = async (req, res) => {
+
+  const URL = "https://pokeapi.co/api/v2/pokemon?offset=20&limit=5";
+
+  await axios.get(URL)
+      .then(response => {res.send(response.data); console.log(response.data)})
+      .catch((err) => {console.log(err);}); 
 };
 
 module.exports = { pokemonList };

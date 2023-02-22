@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../portada/portada.css'
+import ErrorMsg from "../common/ErrorMsg";
 
 const baseURL ='http://localhost:8080';
 
@@ -40,12 +41,13 @@ const Register = () => {
     <div className="container-fluid portada">
       <form className="register" onSubmit={register}>
         <h2 className="register-title">Registro de Usuario</h2>
-        {isError&& 
-          <div className="alert alert-danger p-1" role="alert">
+        {isError&& <div><ErrorMsg msgError={msgError}/></div> 
+          /* <div className="alert alert-danger p-1" role="alert">
             {msgError.map((item,i)=> {
               return <p key={i}>{item.msg}</p>
             })}
-          </div>}
+          </div> */
+        }
         <input
           type="text"
           placeholder="Ingrese Nombre"

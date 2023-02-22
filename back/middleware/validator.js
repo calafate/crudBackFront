@@ -1,13 +1,15 @@
 const { check, validationResult } = require('express-validator')
-const { Blog } = require('../models/Blog')
-const { User } = require('../models/User')
+/* const { Blog } = require('../models/Blog')
+const { User } = require('../models/User') */
 
 const blogValidationRules = () => {
   return [
     check("title").not().isEmpty().withMessage("Ingrese titulo de la Publicación"),
     check("summary").not().isEmpty().withMessage("Ingrese resumen de la Publicación"),
     check("body").not().isEmpty().withMessage("Ingrese texto de la Publicación"),
-    check("category").not().isEmpty().withMessage("Ingrese una categoría")
+    check("category").not().isEmpty().withMessage("Ingrese una categoría"),
+    check("createdAt").not().isEmpty().withMessage("Ingrese una Fecha"),
+   /*  check("image").not().isEmpty().withMessage("Ingrese una Imagen") */
   ]
 }
 

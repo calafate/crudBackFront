@@ -40,20 +40,22 @@ const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
-  const [category, setCategory] = useState("Categoría");
+  const [category, setCategory] = useState("");
   const [bdate, setBdate] = useState("");
   const [files, setFiles] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [msgError, setMsgError] = useState([]);
   const navigate = useNavigate();
   
   const crearPublicacion = () => {
-
+    console.log("bdate =  ",bdate)
     const data = new FormData();
-    data.set('title', title);
-    data.set('summary', summary);
-    data.set('body', body);
-    data.set('category', category);
-    data.set('image', files[0]);
-    data.set('createdAt', bdate);
+      data.set('title', title);
+      data.set('summary', summary);
+      data.set('body', body);
+      data.set('category', category);
+      data.set('image', files[0]);
+      data.set('createdAt', bdate);
 
     console.log(files);
       axios
@@ -68,14 +70,23 @@ const CreateBlog = () => {
           navigate("/allblogs");
         })
         .catch((err) => {
+          setIsError(true);
+          setMsgError(err.response.data.errors);
           console.log(err.response.data);
           /* alert("verifique que todos los datos esten completos") */
         });
+    setIsError(false)
   };
 
   return (
     <div className="container main-body p-5">
       <h2>Nueva Publicación</h2>
+      {isError&& 
+          <div className="alert alert-danger p-1" role="alert">
+            {msgError.map((item,i)=> {
+              return <p key={i}>{item.msg}</p>
+            })}
+          </div>}
       <div className="container-side mt-5">
         <div className="side-body">
           <input
