@@ -3,6 +3,7 @@ import "../portada/portada.css";
 import "./auth.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
+import ErrorMsg from "../common/ErrorMsg";
 
 const baseURL ='http://localhost:8080';
 
@@ -37,13 +38,7 @@ const Login = () => {
     <div className="container-fluid portada">
       <form className="login" onSubmit={login}>
         <h2 className="login-title">Iniciar sesión</h2>
-        {isError&& 
-          <div className="alert alert-danger p-1" role="alert">
-            {msgError.map((item,i)=> {
-              return <p key={i}>{item.msg}</p>
-            })}
-          {/* Usuario o contraseña inválidos */}
-          </div>}
+        {isError&&<ErrorMsg msgError={msgError}/>}
         <input 
           type="text"
           className="login-mail"

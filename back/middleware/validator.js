@@ -8,8 +8,7 @@ const blogValidationRules = () => {
     check("summary").not().isEmpty().withMessage("Ingrese resumen de la Publicación"),
     check("body").not().isEmpty().withMessage("Ingrese texto de la Publicación"),
     check("category").not().isEmpty().withMessage("Ingrese una categoría"),
-    check("createdAt").not().isEmpty().withMessage("Ingrese una Fecha"),
-   /*  check("image").not().isEmpty().withMessage("Ingrese una Imagen") */
+    check("createdAt").not().isEmpty().withMessage("Ingrese una Fecha")
   ]
 }
 

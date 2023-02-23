@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./createBlog.css";
+import ErrorMsg from "../common/ErrorMsg";
 
 const modules = {
   toolbar: [
@@ -46,6 +47,8 @@ const UpdateBlog = () => {
   const [files, setFiles] = useState("");
   const [filesAnt, setFilesAnt] = useState("");
   const [bdate, setBdate] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [msgError, setMsgError] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,31 +66,28 @@ const UpdateBlog = () => {
         })
         .catch((err) => {
           console.log(err);
+          setIsError(true);
+          setMsgError(err.response.data.errors);
         });
     };
     verNoticiaXid();
+    setIsError(false)
   }, [id]);
 
   const actualizarPublicacion = (e) => {
     e.preventDefault();
-    console.log("files= ",files)
-    console.log("typeof de files= ",typeof files);
-    console.log("filesAnt =",filesAnt);
-
     const data = new FormData();
-    data.set('title', title);
-    data.set('summary', summary);
-    data.set('body', body);
-    data.set('category', category);
-    data.set('createdAt', bdate);
-    if ( typeof files[0] === 'object') {
-      console.log("cambio la imagen")
-      data.set('image', files[0]);
-    } else {
-      data.set('image', filesAnt);
-    }
-
-    console.log("formdata files",files);
+      data.set('title', title);
+      data.set('summary', summary);
+      data.set('body', body);
+      data.set('category', category);
+      data.set('createdAt', bdate.toLocaleString());
+      /* data.set('createdAt', dayjs(bdate).toString()); */
+      if ( typeof files[0] === 'object') {
+        data.set('image', files[0]);
+      } else {
+        data.set('image', filesAnt);
+      }
 
     axios
       .put(`${baseURL}/api/blogs/${id}`, data)
@@ -97,14 +97,17 @@ const UpdateBlog = () => {
           navigate("/allblogs");
         }
       })
-      .catch((err) => {console.log(err); alert("verifique que los campos esten correctos");})
-      
+      .catch((err) => {
+        console.log(err);
+        setIsError(true);
+        setMsgError(err.response.data.errors);
+      })
   };
-
 
   return (
     <div className="container main-body p-5">
       <h2>Modificar Publicación</h2>
+      {isError&&<ErrorMsg msgError={msgError}/>}
       <div className="container-side mt-5">
         <div className="side-body">
           <label>Título de la Publicación</label>
@@ -156,15 +159,12 @@ const UpdateBlog = () => {
               type="date"
               className="form-control mb-3"
               value={dayjs(bdate).format("YYYY-MM-DD")}
-              onChange={(e) => {
-                setBdate(e.target.value);
-              }}/>
+              onChange={(e) => {setBdate(e.target.value)}}/>
             <select
-            value={category}
+              required
+              value={category}
               className="form-select mb-3"
-              onChange={(e) => {
-                setCategory(e.target.value);
-              }}>
+              onChange={(e) => {setCategory(e.target.value)}}>
               <option value="Vida Sana">Vida Sana</option>
               <option value="Educación">Educación</option>
               <option value="Deporte">Deporte</option>
@@ -195,13 +195,3 @@ const UpdateBlog = () => {
 };
 
 export default UpdateBlog;
-
-
-/* const fs = require('fs')
-
-try {
-  fs.unlinkSync('./old-article.md')
-  console.log('File removed')
-} catch(err) {
-  console.error('Something wrong happened removing the file', err)
-} */

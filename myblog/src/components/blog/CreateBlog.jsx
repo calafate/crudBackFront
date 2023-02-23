@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./createBlog.css";
+import ErrorMsg from "../common/ErrorMsg";
 
 const modules = {
   toolbar: [
@@ -73,7 +74,6 @@ const CreateBlog = () => {
           setIsError(true);
           setMsgError(err.response.data.errors);
           console.log(err.response.data);
-          /* alert("verifique que todos los datos esten completos") */
         });
     setIsError(false)
   };
@@ -81,12 +81,7 @@ const CreateBlog = () => {
   return (
     <div className="container main-body p-5">
       <h2>Nueva Publicación</h2>
-      {isError&& 
-          <div className="alert alert-danger p-1" role="alert">
-            {msgError.map((item,i)=> {
-              return <p key={i}>{item.msg}</p>
-            })}
-          </div>}
+      {isError&&<ErrorMsg msgError={msgError}/>}
       <div className="container-side mt-5">
         <div className="side-body">
           <input
@@ -141,8 +136,9 @@ const CreateBlog = () => {
             <select
               required
               className="form-select mb-3"
+              defaultValue={""}
               onChange={(e) => {setCategory(e.target.value)}}>
-              <option>Categoría</option>
+              <option value="" disabled >Categoría</option>
               <option value="Vida Sana">Vida Sana</option>
               <option value="Educación">Educación</option>
               <option value="Deporte">Deporte</option>

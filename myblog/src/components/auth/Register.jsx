@@ -4,11 +4,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../portada/portada.css'
 import ErrorMsg from "../common/ErrorMsg";
 
-const baseURL ='http://localhost:8080';
+/* const baseURL ='http://localhost:8080'; */
+const baseURL = process.env.REACT_APP_URL
 
 const Register = () => {
   let navigate = useNavigate();
-
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
@@ -41,13 +41,7 @@ const Register = () => {
     <div className="container-fluid portada">
       <form className="register" onSubmit={register}>
         <h2 className="register-title">Registro de Usuario</h2>
-        {isError&& <div><ErrorMsg msgError={msgError}/></div> 
-          /* <div className="alert alert-danger p-1" role="alert">
-            {msgError.map((item,i)=> {
-              return <p key={i}>{item.msg}</p>
-            })}
-          </div> */
-        }
+        {isError&&<ErrorMsg msgError={msgError}/>}
         <input
           type="text"
           placeholder="Ingrese Nombre"

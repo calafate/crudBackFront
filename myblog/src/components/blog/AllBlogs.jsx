@@ -11,20 +11,18 @@ const AllBlogs = () => {
   const [change, setChange] = useState(false);
   const [noticiasFilter, setNoticiasFilter] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [showCategory, setShowCategory] = useState(false);
 
   const baseURL = "http://localhost:8080";
 
   useEffect(() => {
     const mostrarNoticias = async () => {
-        await axios
-            .get(`${baseURL}/api/blogs/`)
-            .then((res) => { 
-              setNoticias(res.data.data); 
-              setNoticiasFilter(res.data.data);
-            })
-            .catch((err) => {
-            console.log(err);
-            });
+    await axios
+      .get(`${baseURL}/api/blogs/`)
+      .then((res) => { 
+        setNoticias(res.data.data); 
+        setNoticiasFilter(res.data.data);})
+      .catch((err) => {console.log(err);});
     };
     mostrarNoticias();
     setChange(false);
@@ -43,25 +41,29 @@ const handleChange = (e) => {
     });
     setNoticiasFilter(resultadoBusqueda);
   }
-
+  const cleanFilterSearch = (e) => {
+    e.preventDefault();
+    setSearchText("");
+    setNoticiasFilter(noticias);
+  }
+  
  // filtro por categoria
-  const allCategories = ["Todas",
-    ...new Set(noticias.map(item => item.category))];
-  const [categories, setCategories] = useState(allCategories);
+  const [categories, setCategories] = useState([]);
   const filterCategory = (category) => {
     if (category === "Todas"){
-      setCategories(allCategories)
+      /* setCategories(allCategories) */
       setNoticiasFilter(noticias)
       return
     } 
   const filteredData = noticias.filter(noticia => noticia.category === category);
     setNoticiasFilter(filteredData)
   }
-  const cleanFilterSearch = (e) => {
-    setSearchText("")
-    setNoticiasFilter(noticias)
-  }
-
+  useEffect(() => {
+    const allCategories = ["Todas",
+    ...new Set(noticias.map(item => item.category))];
+    setCategories(allCategories)
+    setShowCategory(true)
+  }, [noticias])
 
   return (
     <div className="container">
@@ -81,7 +83,7 @@ const handleChange = (e) => {
             X
           </button>
         </div>
-        {<SearchCategory 
+        {showCategory&&<SearchCategory 
           categories={categories} 
           filterCategory={filterCategory}/>}
       </div>

@@ -1,4 +1,4 @@
-# Crear un CRUD con Express, MongoDB y React
+# Crear un CRUD con Express, MongoDB y React 
 ## El esquema es un Blog básico
 
 ## Ejecución

@@ -38,7 +38,7 @@ exports.createBlog = async (req, res) => {
       res.json({ data: blog, status: "success" });
     } catch (err) {
       const errors = []
-      errors.push({msg: "Error en el envio (501)"})
+      errors.push({msg: "ingrese el archivo de la imagen - Error en el envio (501)"})
       res.status(501).json({ errors: errors });
     }
 };
