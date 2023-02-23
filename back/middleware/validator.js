@@ -1,6 +1,5 @@
-const { check, validationResult } = require('express-validator')
-/* const { Blog } = require('../models/Blog')
-const { User } = require('../models/User') */
+const { check, validationResult } = require('express-validator');
+const jwt = require("jsonwebtoken");
 
 const blogValidationRules = () => {
   return [
@@ -46,10 +45,24 @@ const validate = (req, res, next) => {
   res.status(400).json({errors: errors.array()});
 }
 
+const verifyToken = (req, res, next) => {
+  const token = req.headers["x-access-token"]
+  if(!token) {
+    return res.status(401).json({
+      auth: false,
+      msg: "No token"
+    })
+  }
+  const decoded = jwt.verify(token, process.env.SECRET);
+  req.userId = decoded.id;
+  next();
+}
+
 module.exports = {
   blogValidationRules,
   userValidationRules,
   loginValidationRules,
   validarID,
   validate,
+  verifyToken
 }

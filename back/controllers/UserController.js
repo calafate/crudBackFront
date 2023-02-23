@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 exports.listUsers = async (req, res) => {
   try {
@@ -41,7 +42,10 @@ exports.loginUser = async (req, res) => {
     if (user !== null) {
       const passOK = bcrypt.compareSync(pass, user.pass);
       if (passOK) {
-        res.json({ data: user, status: "Login exitoso" });
+        const token = jwt.sign({id: user._id}, process.env.SECRET, {
+          expiresIn: 60 * 60 * 24
+        })
+        res.json({ status: "Login exitoso", data: user, token: token });
       } else {
         errors.push({msg: "Contraseña incorrecta"})
         res.status(400).json({ errors: errors });
@@ -54,4 +58,14 @@ exports.loginUser = async (req, res) => {
     errors.push({msg: "Error en el envío de la solicitud (501)"})
     res.status(501).json({ error: errors });
   }
+};
+
+exports.profileUser = async (req, res) => {
+  const user = await User.findById(req.userId, {pass: 0});
+  if(!user){
+    return res.status(404).send("No se encontro el usuario");
+  }
+
+  res.json(user);
+
 };
