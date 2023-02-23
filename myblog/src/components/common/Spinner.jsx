@@ -8,14 +8,6 @@ const Spinner = () => {
           <h6 className="text-secondary ps-3">Cargando datos ...</h6>
       </div>}
     </div>
-    
-    /* <div className="d-flex justify-content-center align-items-center" style={{backgroundColor: "var(--background-color)"}}>
-        <div className="spinner-grow text-secondary" role="status">
-        </div>
-        <div>
-          <h6 className="text-secondary ps-3">Cargando datos ...</h6>
-        </div>
-    </div> */
   )
 }
 

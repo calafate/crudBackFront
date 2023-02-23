@@ -16,11 +16,11 @@ const PokeList = () => {
   const [anterior, setAnterior] = useState(null);
   const [siguiente, setSiguiente] = useState(null);
   const [total, setTotal] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     const mostrarPokemon = async () => {
       await axios
         .get(actual)
@@ -33,7 +33,7 @@ const PokeList = () => {
         .catch((err) => {
           console.log(err);
         });
-      setLoading(false)
+      setIsLoading(false)
     };
     mostrarPokemon();
   }, [actual]);
@@ -45,7 +45,7 @@ const PokeList = () => {
         <Link to="/">Inicio</Link>
       </nav>
       <h2 className="pokemones-title">Pokemones</h2>
-      {loading&&<Spinner />}
+      {isLoading&&<Spinner />}
       <div className="d-flex justify-content-end align-items-center pb-3">
         <button
           onClick={() => anterior !== null && setActual(anterior)}

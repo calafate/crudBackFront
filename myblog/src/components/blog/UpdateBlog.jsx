@@ -81,8 +81,7 @@ const UpdateBlog = () => {
       data.set('summary', summary);
       data.set('body', body);
       data.set('category', category);
-      data.set('createdAt', bdate.toLocaleString());
-      /* data.set('createdAt', dayjs(bdate).toString()); */
+      data.set('createdAt', bdate);
       if ( typeof files[0] === 'object') {
         data.set('image', files[0]);
       } else {
@@ -156,9 +155,9 @@ const UpdateBlog = () => {
         <div className="side-bar">
           <div>
             <input
-              type="date"
+              type="datetime-local"
               className="form-control mb-3"
-              value={dayjs(bdate).format("YYYY-MM-DD")}
+              value={dayjs(bdate).format("YYYY-MM-DDThh:mm")}
               onChange={(e) => {setBdate(e.target.value)}}/>
             <select
               required

@@ -42,7 +42,7 @@ const CreateBlog = () => {
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
   const [category, setCategory] = useState("");
-  const [bdate, setBdate] = useState("");
+  const [bdate, setBdate] = useState(dayjs().format("YYYY-MM-DDThh:mm"));
   const [files, setFiles] = useState("");
   const [isError, setIsError] = useState(false);
   const [msgError, setMsgError] = useState([]);
@@ -128,9 +128,9 @@ const CreateBlog = () => {
           <div>
             <input
               required
-              type="date"
+              type="datetime-local"
               className="form-control mb-3"
-              /* value={dayjs(bdate).format("YYYY-MM-DD")} */
+              value={dayjs(bdate).format("YYYY-MM-DDThh:mm")}
               onChange={(e) => {setBdate(e.target.value)}}
             />
             <select
