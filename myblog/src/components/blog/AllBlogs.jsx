@@ -13,7 +13,7 @@ const AllBlogs = () => {
   const [searchText, setSearchText] = useState("");
   const [showCategory, setShowCategory] = useState(false);
 
-  const baseURL = "http://localhost:8080";
+  const baseURL = process.env.REACT_APP_URL;
 
   useEffect(() => {
     const mostrarNoticias = async () => {
@@ -26,7 +26,7 @@ const AllBlogs = () => {
     };
     mostrarNoticias();
     setChange(false);
-    }, [change]);
+    }, [change, baseURL]);
 
 // filtro por texto en el titulo
 const handleChange = (e) => {
@@ -51,11 +51,10 @@ const handleChange = (e) => {
   const [categories, setCategories] = useState([]);
   const filterCategory = (category) => {
     if (category === "Todas"){
-      /* setCategories(allCategories) */
       setNoticiasFilter(noticias)
       return
     } 
-  const filteredData = noticias.filter(noticia => noticia.category === category);
+    const filteredData = noticias.filter(noticia => noticia.category === category);
     setNoticiasFilter(filteredData)
   }
   useEffect(() => {

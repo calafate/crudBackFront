@@ -18,6 +18,10 @@ const userSchema = new Schema({
     pass: {
         type: String,
         required: true
+    },
+    role: {
+        type: String,
+        default: "user"
     }
 });
 

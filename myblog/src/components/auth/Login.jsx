@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import ErrorMsg from "../common/ErrorMsg";
 
-const baseURL ='http://localhost:8080';
+const baseURL = process.env.REACT_APP_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");

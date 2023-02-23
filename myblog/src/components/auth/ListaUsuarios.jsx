@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios';
 
-const baseURL =  'http://localhost:8080'
+const baseURL = process.env.REACT_APP_URL;
 
 const ListaUsuarios = () => {
 const [users, setUsers] = useState([]);

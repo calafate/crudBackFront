@@ -18,7 +18,7 @@ const Portada = () => {
             <h4 className="text-white-75 mb-5">
             Sitio web donde uno puede publicar lo que desee compartir con otras personas.
             </h4>
-            <Link to="/auth/login" className="btn btn-dark btn-xl">
+            <Link to="/auth/login" className="getInto">
               Ingresar
             </Link>
           </div>

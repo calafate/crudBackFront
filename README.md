@@ -34,7 +34,7 @@ crudBackFront/myblog ejecutar npm start
 
 ## Datos para usar de ejemplo:
 Usuario de Prueba para login: 
-email: test@gmail.com
+email: usuario@gmail.com
 contraseña: 1234
 
 ## Rutas para probar en Postman:

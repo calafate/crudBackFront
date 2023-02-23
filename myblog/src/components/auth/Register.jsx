@@ -4,8 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../portada/portada.css'
 import ErrorMsg from "../common/ErrorMsg";
 
-/* const baseURL ='http://localhost:8080'; */
-const baseURL = process.env.REACT_APP_URL
+const baseURL = process.env.REACT_APP_URL;
 
 const Register = () => {
   let navigate = useNavigate();

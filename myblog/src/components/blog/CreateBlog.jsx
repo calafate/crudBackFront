@@ -35,7 +35,7 @@ const formats = [
   "image",
 ];
 
-const baseURL = "http://localhost:8080";
+const baseURL = process.env.REACT_APP_URL;
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");

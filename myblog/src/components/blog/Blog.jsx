@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import "react-quill/dist/quill.snow.css";
 import "./blog.css";
 
-const baseURL = "http://localhost:8080";
+const baseURL = process.env.REACT_APP_URL;
 
 const Blog = () => {
   const { id } = useParams();
