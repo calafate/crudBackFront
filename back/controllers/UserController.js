@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.listUsers = async (req, res) => {
@@ -15,8 +14,7 @@ exports.registerUser = async (req, res) => {
   const usuario = User.findOne({email: req.body.email});
     try {
       if (usuario !== null) {
-        let salt = bcrypt.genSaltSync(10);
-        let hash = bcrypt.hashSync(req.body.pass, salt);
+        const hash = User.encryptPass(req.body.pass);
         const registerUser = {
           nombre: req.body.nombre,
           apellido: req.body.apellido,
@@ -40,7 +38,7 @@ exports.loginUser = async (req, res) => {
     const { email, pass } = req.body;
     const user = await User.findOne({ email });
     if (user !== null) {
-      const passOK = bcrypt.compareSync(pass, user.pass);
+      const passOK = User.comparePass(pass, user.pass);
       if (passOK) {
         const token = jwt.sign({id: user._id}, process.env.SECRET, {
           expiresIn: 60 * 60 * 24
