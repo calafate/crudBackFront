@@ -21,6 +21,7 @@ const Login = () => {
       email: email,
       pass: pass
     };
+    /* axios.post("/user/login", login) */
     axios.post(`${baseURL}/user/login`, login)
       .then(res => {
           console.log(res.data.data);

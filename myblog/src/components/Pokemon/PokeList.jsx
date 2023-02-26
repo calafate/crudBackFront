@@ -8,11 +8,10 @@ import Spinner from "../common/Spinner";
 
 const PokeList = () => {
   
-  const limit = 16;
-  const URL = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`;
+  const URL = process.env.REACT_APP_URL;
 
   const [pokemones, setPokemones] = useState([]);
-  const [actual, setActual] = useState(URL);
+  const [actual, setActual] = useState(`${URL}/pokemon/list`);
   const [anterior, setAnterior] = useState(null);
   const [siguiente, setSiguiente] = useState(null);
   const [total, setTotal] = useState(0);
@@ -22,8 +21,7 @@ const PokeList = () => {
   useEffect(() => {
     setIsLoading(true);
     const mostrarPokemon = async () => {
-      await axios
-        .get(actual)
+      await axios.get(actual)
         .then((res) => {
           setPokemones(res.data.results);
           setAnterior(res.data.previous);

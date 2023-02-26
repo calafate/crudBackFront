@@ -22,10 +22,14 @@ const blogSchema = new Schema({
         type: String,
         required: true
     },
-    createdAt: {
+    fecha: {
         type: Date,
         required: true
     },
-});
+},
+{
+    timestamps: true
+}
+);
 
 module.exports = mongoose.model("Blog", blogSchema);

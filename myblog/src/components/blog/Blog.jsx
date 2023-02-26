@@ -49,7 +49,7 @@ const Blog = () => {
       <hr className="publication-hr" />
       <div className="publication-date-category">
         <p className="publication-date">
-          Publicado el: {dayjs(blog.createdAt).format("DD MMMM YYYY")}
+          Publicado el: {dayjs(blog.fecha).format("DD MMMM YYYY")}
         </p>
         <p className="publication-category">{blog.category}</p>
       </div>

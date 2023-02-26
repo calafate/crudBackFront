@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const pokemonList = async (req, res) => {
 
-  const URL = "https://pokeapi.co/api/v2/pokemon?offset=20&limit=5";
+  const URL = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=16";
 
   await axios.get(URL)
       .then(response => {res.send(response.data); console.log(response.data)})

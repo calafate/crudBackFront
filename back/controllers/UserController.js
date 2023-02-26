@@ -23,13 +23,31 @@ exports.registerUser = async (req, res) => {
         };
         const user = new User(registerUser);
         await user.save();
-        res.json({ status: "success" });
+        res.json({ data: user, status: "success" });
       } 
     } catch (err) {
       const errors = []
       errors.push({msg: "El email ya esta registrado"})
       res.status(501).json({errors: errors});
     }
+};
+
+exports.modifyUser = async (req, res) => {
+  const errors = []
+  console.log(req.params.email)
+  try {
+    const {nombre, apellido, role, } = req.body
+    const data = {
+      nombre,
+      apellido,
+      role
+    }
+    const usuario = await User.findOneAndUpdate({email: req.params.email}, data);
+    res.json({ data: usuario, status: "success" });
+  } catch (err) {
+    errors.push({msg: "Error en el envio (500)"})
+    res.status(500).json({ errors: errors });
+  }
 };
 
 exports.loginUser = async (req, res) => {
@@ -63,7 +81,5 @@ exports.profileUser = async (req, res) => {
   if(!user){
     return res.status(404).send("No se encontro el usuario");
   }
-
   res.json(user);
-
 };

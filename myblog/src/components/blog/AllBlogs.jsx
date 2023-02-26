@@ -5,6 +5,8 @@ import EmptyList from "../common/EmptyList";
 import ListBlogs from "./ListBlogs";
 import SearchCategory from "../search/searchCategory/SearchCategory";
 
+
+
 const AllBlogs = () => {
   
   const [noticias, setNoticias] = useState([]);
@@ -12,6 +14,7 @@ const AllBlogs = () => {
   const [noticiasFilter, setNoticiasFilter] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [showCategory, setShowCategory] = useState(false);
+
 
   const baseURL = process.env.REACT_APP_URL;
 

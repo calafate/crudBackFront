@@ -11,17 +11,17 @@ const ListBlogs = ({ noticias, baseURL }) => {
     dayjs.locale(es);
 
     const borrarNoticia = async (e, id) => {
-    e.preventDefault();
-    await axios
-      .delete(`${baseURL}/api/blogs/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        window.location.reload(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+      e.preventDefault();
+      await axios
+        .delete(`${baseURL}/api/blogs/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          window.location.reload(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
 
   return (
     <div className="container">
@@ -48,7 +48,7 @@ const ListBlogs = ({ noticias, baseURL }) => {
                 <hr className="blog-hr"/>
                   <div className="item-date-category">
                     <p className="item-date">
-                      {dayjs(noticia.createdAt).format("DD MMMM YYYY")}
+                      {dayjs(noticia.fecha).format("DD MMMM YYYY")}
                     </p>
                     <p className="item-category">
                       {noticia.category}
@@ -57,7 +57,8 @@ const ListBlogs = ({ noticias, baseURL }) => {
                         <Link to={`/updateblog/${noticia._id}`} className="buttons-upt-del">
                           <FontAwesomeIcon icon = {faPenToSquare} color="var(--update-color)"/>
                         </Link>
-                        <Link to = {(e) => borrarNoticia(e, noticia._id)} className="buttons-upt-del">
+                        <Link to = "/allblogs"
+                        onClick = {(e) => borrarNoticia(e, noticia._id)} className="buttons-upt-del">
                           <FontAwesomeIcon icon = {faTrashCan} color="var(--danger-color)" />
                         </Link>
                     </div>

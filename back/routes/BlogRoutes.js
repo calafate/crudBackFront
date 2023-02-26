@@ -18,10 +18,10 @@ const upload = multer({ storage, dest: 'uploads' });
 
 // RUTAS
 router.get("/", getAllBlogs);
-router.get("/:id",getBlogById);
+router.get("/:id", getBlogById);
 router.post("/", upload.single("image"), blogValidationRules(), validate, createBlog);
 router.put("/:id", upload.single("image"), blogValidationRules(), validate, updateBlog);
-router.delete("/:id", validarID, deleteBlog);
+router.delete("/:id", deleteBlog);
 
 
 module.exports = router;

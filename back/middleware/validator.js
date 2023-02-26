@@ -7,18 +7,8 @@ const blogValidationRules = () => {
     check("summary").not().isEmpty().withMessage("Ingrese resumen de la Publicación"),
     check("body").not().isEmpty().withMessage("Ingrese texto de la Publicación"),
     check("category").not().isEmpty().withMessage("Ingrese una categoría"),
-    check("createdAt").not().isEmpty().withMessage("Ingrese una Fecha")
+    check("fecha").not().isEmpty().withMessage("Ingrese una Fecha")
   ]
-}
-
-const validarID = async (req, res, next) => {
-  const ID = req.params.id
-  if (ID.length === 24) {
-    console.log("Formato de ID correcto");
-    next();
-  } else {
-    res.status(500).json({msg:"ID invalido debe poseer 24 caracteres alfanumericos"});
-  }
 }
 
 const userValidationRules = () => {
@@ -46,11 +36,13 @@ const validate = (req, res, next) => {
 }
 
 const verifyToken = (req, res, next) => {
+  const errors = []
   const token = req.headers["x-access-token"]
   if(!token) {
+    errors.push({msg: "Acceso no autorizado"})
     return res.status(401).json({
       auth: false,
-      msg: "No token"
+      msg: "No token - Acceso no autorizado"
     })
   }
   const decoded = jwt.verify(token, process.env.SECRET);
@@ -62,7 +54,6 @@ module.exports = {
   blogValidationRules,
   userValidationRules,
   loginValidationRules,
-  validarID,
   validate,
   verifyToken
 }

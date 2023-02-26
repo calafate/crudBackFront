@@ -38,6 +38,7 @@ const formats = [
 const baseURL = process.env.REACT_APP_URL;
 
 const CreateBlog = () => {
+
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
@@ -49,16 +50,14 @@ const CreateBlog = () => {
   const navigate = useNavigate();
   
   const crearPublicacion = () => {
-    console.log("bdate =  ",bdate)
     const data = new FormData();
       data.set('title', title);
       data.set('summary', summary);
       data.set('body', body);
       data.set('category', category);
       data.set('image', files[0]);
-      data.set('createdAt', bdate);
+      data.set('fecha', dayjs(bdate).format("YYYY-MM-DDThh:mm"));
 
-    console.log(files);
       axios
         .post(`${baseURL}/api/blogs/`, data)
         .then((res) => {
@@ -67,7 +66,7 @@ const CreateBlog = () => {
           setBody("");
           setCategory("");
           setFiles("");
-          setBdate(dayjs(new Date()).format("YYYY-MM-DD"));
+          setBdate(dayjs().format("YYYY-MM-DDThh:mm"));
           navigate("/allblogs");
         })
         .catch((err) => {
@@ -128,9 +127,9 @@ const CreateBlog = () => {
           <div>
             <input
               required
-              type="datetime-local"
+              type="date"
               className="form-control mb-3"
-              value={dayjs(bdate).format("YYYY-MM-DDThh:mm")}
+              value={dayjs(bdate).format("YYYY-MM-DD")}
               onChange={(e) => {setBdate(e.target.value)}}
             />
             <select

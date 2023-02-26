@@ -6,7 +6,7 @@ const fs = require('fs');
 
 exports.getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().sort({createdAt: -1});
+    const blogs = await Blog.find().sort({fecha: -1});
     res.json({ data: blogs, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -24,14 +24,14 @@ exports.getBlogById = async (req, res) => {
 
 exports.createBlog = async (req, res) => {
     try {
-      const {title, summary, body, category, createdAt} = req.body
+      const {title, summary, body, category, fecha} = req.body
       const blog = new Blog({
         title,
         summary,
         body,
         category,
         image : req.file.originalname,
-        createdAt
+        fecha
       });
       console.log(blog)
       await blog.save();
@@ -47,7 +47,7 @@ exports.updateBlog = async (req, res) => {
     const errors = []
     if (req.file) {
       try {
-        const {title, summary, body, createdAt} = req.body
+        const {title, summary, body, fecha} = req.body
         const blog = await Blog.findById(req.params.id);
         console.log(`/uploads/${blog.image}`)
         try {
@@ -60,7 +60,7 @@ exports.updateBlog = async (req, res) => {
         blog.title = title;
         blog.summary = summary;
         blog.body = body;
-        blog.createdAt = createdAt;
+        blog.fecha = fecha;
         blog.image = req.file.originalname;
         await blog.save();
         res.json({ data: blog, status: "success" });
