@@ -34,7 +34,6 @@ exports.registerUser = async (req, res) => {
 
 exports.modifyUser = async (req, res) => {
   const errors = []
-  console.log(req.params.email)
   try {
     const {nombre, apellido, role, } = req.body
     const data = {

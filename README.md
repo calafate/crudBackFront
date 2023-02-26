@@ -1,12 +1,24 @@
-# Crear un CRUD con Express, MongoDB y React 
-## El esquema es un Blog básico
+# CRUD con Express, MongoDB y React
+## El esquema es un Blog básico realizado para el trabajo final de backend, al cual se le agrego el frontend con React.
 
-## Ejecución
+## Trabajo final Backend, puntos solicitados:
+
+- Contar con una base de datos propia y cuenta en moongose.
+- Desarrollar el proyecto con un servidor en node que utilice rutas con sus respectivos métodos http para la cominucación con la base de datos
+- Poseer un esquema propio y original.
+- Poseer aunque sea 4 rutas para conformar el CRUD.
+- Validar las rutas que sean necesarias con express-validator.
+- Desarrollar un midleware propio.
+- Tener una ruta que se comunique con una API externa.- 
+
+## Ejecución del proyecto
+
 Clonar proyecto github
 Crear un .Env en Back con las siguientes variables:
-    - MONGODB_URI=mongodb+srv://<usuario>:<contraseña>@cluster0.hw5veab.mongodb.net/test
-    - PORT=8080
-Instalar dependencias (npm install)
+    - MONGODB_URI = mongodb+srv://<usuario>:<contraseña>@cluster0.hw5veab.mongodb.net/test
+    - PORT = 8080
+    - SECRET = cualquiercosa
+Instalar dependencias (npm install) en ambos directorios (back y myblog)
 crudBackFront/back ejecutar npm run dev
 crudBackFront/myblog ejecutar npm start
 
@@ -25,11 +37,11 @@ crudBackFront/myblog ejecutar npm start
 - [nodemon] - Es una utilidad que monitorea los cambios en el código fuente que se está desarrollando y automáticamente reinicia el servidor. Es una herramienta muy útil para desarrollo de aplicaciones con javascript.
 
 ## Librerias utilizadas en el Front
+
 - [react] - React es una biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página. Es mantenido por Facebook y la comunidad de software libre.
 - [axios] - Es una librería cliente HTTP basada en promesas que se puede usar tanto en Node JS como en el navegador; por lo que podremos configurar y realizar solicitudes a un servidor y recibiremos respuestas fáciles de procesar.
 - [react-quill] - Es un potente editor de texto enriquecido. Es gratuito y de código abierto creado para la web moderna.
 - [dayjs] - Es una librería para validar, parsear y mostrar variables de tipo datetimes.
-
 
 
 ## Datos para usar de ejemplo:
@@ -38,6 +50,7 @@ email: usuario@gmail.com
 contraseña: 1234
 
 ## Rutas para probar en Postman:
+
 ### Blog
 | Método | Ruta |
 | ------ | ------ |
@@ -46,7 +59,6 @@ contraseña: 1234
 | POST | [http://localhost:8080/api/blogs]|
 | PUT | [http://localhost:8080/api/blogs/{id}]|
 | DELETE | [http://localhost:8080/api/blogs/{id}]|
-
 
 ### User
 | Método | Ruta |

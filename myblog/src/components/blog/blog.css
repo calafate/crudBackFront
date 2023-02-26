@@ -1,5 +1,12 @@
+.blogxID-container{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-items: center;
+    margin: 0 auto;
+}
 .publication-title {
-    /* background-image: url(../../img/portada.jpg); */
+    text-align: left;
     color: var(--main-color);
 }
 .publication-title-title{
@@ -50,4 +57,10 @@
 }
 .button-return:hover{
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .blogxID-container{
+        width: 90%;
+    }
 }

@@ -33,7 +33,6 @@ exports.createBlog = async (req, res) => {
         image : req.file.originalname,
         fecha
       });
-      console.log(blog)
       await blog.save();
       res.json({ data: blog, status: "success" });
     } catch (err) {
@@ -49,7 +48,6 @@ exports.updateBlog = async (req, res) => {
       try {
         const {title, summary, body, fecha} = req.body
         const blog = await Blog.findById(req.params.id);
-        console.log(`/uploads/${blog.image}`)
         try {
           fs.unlinkSync(`./uploads/${blog.image}`)
         } catch(err) {

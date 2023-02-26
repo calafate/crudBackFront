@@ -28,7 +28,7 @@ const ListBlogs = ({ noticias, baseURL }) => {
       <div className="row gx-5">
         {noticias.map((noticia) => {
           return (
-            <div key={noticia._id} className="col-sm-4">    
+            <div key={noticia._id} className="col-sm-12 col-md-6 col-lg-4">    
               <div className="blog-container mb-5">
                 <Link className="link-blog" to={`/allblogs/${noticia._id}`}>
                   <div className="blog-img-container">
